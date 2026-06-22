@@ -1,0 +1,167 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "skills": "Keahlian",
+    "projects": "Proyek",
+    "research": "Penelitian",
+    "experience": "Pengalaman",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "greeting": "Halo, saya",
+    "name": "Randi Sumitro",
+    "roles": [
+      "Full Stack Developer",
+      "IoT Engineer",
+      "Machine Learning Researcher",
+      "System Analyst",
+      "Web Developer"
+    ],
+    "description": "Full Stack Engineer dengan spesialisasi dalam membangun layanan publik digital skala produksi, sistem cerdas (AI/ML), dan arsitektur enterprise modern berkinerja tinggi.",
+    "cta_projects": "Lihat Proyek",
+    "cta_contact": "Hubungi Saya",
+    "cta_resume": "Download CV",
+    "scroll_hint": "Gulir ke bawah",
+    "available": "Tersedia untuk kolaborasi"
+  },
+  "stats": {
+    "title": "GitHub Analytics",
+    "repos": "Repository",
+    "stars": "Stars",
+    "followers": "Followers",
+    "languages": "Bahasa",
+    "view_github": "Lihat GitHub"
+  },
+  "about": {
+    "title": "Tentang Saya",
+    "subtitle": "Engineering + Scale + Impact",
+    "intro": "Saya adalah Senior Full Stack Engineer yang memiliki rekam jejak terbukti dalam merancang, mengembangkan, dan memelihara sistem digital skala besar untuk layanan publik dan enterprise.",
+    "journey_title": "Pengalaman Profesional",
+    "journey": [
+      {
+        "year": "2023",
+        "title": "Digitalisasi Pengadaan Daerah",
+        "description": "Memimpin pengembangan SIMPONI, sistem manajemen pengadaan digital untuk transparansi birokrasi"
+      },
+      {
+        "year": "2024",
+        "title": "Portal Perizinan Terpadu",
+        "description": "Membangun sistem tracking perizinan dan notifikasi real-time DPMPTSP"
+      },
+      {
+        "year": "2025",
+        "title": "Super App Layanan Publik",
+        "description": "Merancang arsitektur microservices untuk MPP Digital, sentralisasi 100+ layanan"
+      },
+      {
+        "year": "2026",
+        "title": "Enterprise AI & Full Stack",
+        "description": "Membangun TruthGuard AI dengan Azure AI Language dan FastAPI"
+      }
+    ],
+    "focus_title": "Bidang Fokus",
+    "focus": [
+      "Full Stack Web Development",
+      "Internet of Things (IoT)",
+      "Machine Learning & AI",
+      "System Analysis & Design",
+      "MLOps & DevOps"
+    ],
+    "interests_title": "Minat Riset",
+    "interests": [
+      "AI untuk deteksi penipuan dan analisis risiko",
+      "IoT untuk monitoring lingkungan",
+      "MLOps dan production ML systems",
+      "Sistem informasi untuk layanan publik"
+    ]
+  },
+  "skills": {
+    "title": "Keahlian Teknis",
+    "subtitle": "Teknologi yang digunakan dalam proyek nyata",
+    "categories": {
+      "language": "Bahasa Pemrograman",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "ml": "Machine Learning & AI",
+      "iot": "IoT & Embedded",
+      "devops": "DevOps & Tools"
+    },
+    "language_distribution": "Distribusi Bahasa",
+    "by_project": "Digunakan di proyek"
+  },
+  "projects": {
+    "title": "Proyek",
+    "subtitle": "Karya nyata dari repository GitHub",
+    "filter_all": "Semua",
+    "filter_ai": "AI/ML",
+    "filter_fullstack": "Full Stack",
+    "filter_iot": "IoT",
+    "filter_web": "Web App",
+    "filter_devops": "DevOps",
+    "filter_research": "Riset",
+    "view_code": "Kode Sumber",
+    "view_demo": "Live Demo",
+    "view_detail": "Detail Proyek",
+    "complexity": "Kompleksitas",
+    "technologies": "Teknologi",
+    "features": "Fitur Utama",
+    "challenges": "Tantangan Teknis",
+    "solutions": "Solusi",
+    "highlights": "Pencapaian"
+  },
+  "research": {
+    "title": "Penelitian",
+    "subtitle": "Eksplorasi ilmiah dan eksperimen teknis",
+    "methodology": "Metodologi",
+    "results": "Hasil",
+    "dataset": "Dataset",
+    "accuracy": "Akurasi Model"
+  },
+    "experience": {
+    "title": "Pengalaman",
+    "subtitle": "Karier dan proyek profesional",
+    "personal": "Proyek Pribadi",
+    "academic": "Riset & Akademik",
+    "organization": "Proyek Open Source",
+    "client": "Pemerintahan & Enterprise",
+    "present": "Sekarang"
+  },
+  "contact": {
+    "title": "Kontak",
+    "subtitle": "Mari berkolaborasi dan bangun sesuatu yang luar biasa",
+    "email_label": "Email",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn",
+    "form_name": "Nama Lengkap",
+    "form_email": "Email",
+    "form_subject": "Subjek",
+    "form_message": "Pesan",
+    "form_submit": "Kirim Pesan",
+    "form_sending": "Mengirim...",
+    "form_success": "Pesan berhasil dikirim! Saya akan membalas secepatnya.",
+    "form_error": "Gagal mengirim pesan. Silakan coba lagi.",
+    "availability": "Tersedia untuk",
+    "availability_items": [
+      "Freelance Project",
+      "Kolaborasi Open Source",
+      "Konsultasi Teknis",
+      "Magang / Kerja Sama"
+    ]
+  },
+  "footer": {
+    "built_with": "Dibangun dengan",
+    "by": "oleh",
+    "rights": "Seluruh hak cipta dilindungi"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "back": "Kembali",
+    "see_all": "Lihat Semua",
+    "read_more": "Baca Selengkapnya",
+    "github": "GitHub",
+    "demo": "Demo"
+  }
+}

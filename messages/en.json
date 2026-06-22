@@ -1,0 +1,167 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "research": "Research",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "name": "Randi Sumitro",
+    "roles": [
+      "Full Stack Developer",
+      "IoT Engineer",
+      "Machine Learning Researcher",
+      "System Analyst",
+      "Web Developer"
+    ],
+    "description": "Full Stack Engineer specializing in building production-grade digital public services, intelligent systems (AI/ML), and high-performance modern enterprise architectures.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Contact Me",
+    "cta_resume": "Download CV",
+    "scroll_hint": "Scroll down",
+    "available": "Available for collaboration"
+  },
+  "stats": {
+    "title": "GitHub Analytics",
+    "repos": "Repositories",
+    "stars": "Stars",
+    "followers": "Followers",
+    "languages": "Languages",
+    "view_github": "View GitHub"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Engineering + Scale + Impact",
+    "intro": "I am a Senior Full Stack Engineer with a proven track record of designing, developing, and maintaining large-scale digital systems for public services and enterprises.",
+    "journey_title": "Professional Experience",
+    "journey": [
+      {
+        "year": "2023",
+        "title": "Regional Procurement Digitalization",
+        "description": "Led the development of SIMPONI, a digital procurement management system for bureaucratic transparency"
+      },
+      {
+        "year": "2024",
+        "title": "Integrated Licensing Portal",
+        "description": "Built licensing tracking system and real-time notifications for DPMPTSP"
+      },
+      {
+        "year": "2025",
+        "title": "Public Service Super App",
+        "description": "Designed microservices architecture for MPP Digital, centralizing 100+ services"
+      },
+      {
+        "year": "2026",
+        "title": "Enterprise AI & Full Stack",
+        "description": "Built TruthGuard AI with Azure AI Language and FastAPI"
+      }
+    ],
+    "focus_title": "Focus Areas",
+    "focus": [
+      "Full Stack Web Development",
+      "Internet of Things (IoT)",
+      "Machine Learning & AI",
+      "System Analysis & Design",
+      "MLOps & DevOps"
+    ],
+    "interests_title": "Research Interests",
+    "interests": [
+      "AI for fraud detection and risk analysis",
+      "IoT for environmental monitoring",
+      "MLOps and production ML systems",
+      "Information systems for public services"
+    ]
+  },
+  "skills": {
+    "title": "Technical Skills",
+    "subtitle": "Technologies used in real projects",
+    "categories": {
+      "language": "Programming Languages",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "ml": "Machine Learning & AI",
+      "iot": "IoT & Embedded",
+      "devops": "DevOps & Tools"
+    },
+    "language_distribution": "Language Distribution",
+    "by_project": "Used in projects"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Real work from GitHub repositories",
+    "filter_all": "All",
+    "filter_ai": "AI/ML",
+    "filter_fullstack": "Full Stack",
+    "filter_iot": "IoT",
+    "filter_web": "Web App",
+    "filter_devops": "DevOps",
+    "filter_research": "Research",
+    "view_code": "Source Code",
+    "view_demo": "Live Demo",
+    "view_detail": "Project Details",
+    "complexity": "Complexity",
+    "technologies": "Technologies",
+    "features": "Key Features",
+    "challenges": "Technical Challenges",
+    "solutions": "Solutions",
+    "highlights": "Highlights"
+  },
+  "research": {
+    "title": "Research",
+    "subtitle": "Scientific exploration and technical experiments",
+    "methodology": "Methodology",
+    "results": "Results",
+    "dataset": "Dataset",
+    "accuracy": "Model Accuracy"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Professional career and projects",
+    "personal": "Personal Project",
+    "academic": "Research & Academic",
+    "organization": "Open Source Project",
+    "client": "Government & Enterprise",
+    "present": "Present"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's collaborate and build something amazing",
+    "email_label": "Email",
+    "github_label": "GitHub",
+    "linkedin_label": "LinkedIn",
+    "form_name": "Full Name",
+    "form_email": "Email",
+    "form_subject": "Subject",
+    "form_message": "Message",
+    "form_submit": "Send Message",
+    "form_sending": "Sending...",
+    "form_success": "Message sent successfully! I'll reply as soon as possible.",
+    "form_error": "Failed to send message. Please try again.",
+    "availability": "Available for",
+    "availability_items": [
+      "Freelance Projects",
+      "Open Source Collaboration",
+      "Technical Consulting",
+      "Internship / Partnership"
+    ]
+  },
+  "footer": {
+    "built_with": "Built with",
+    "by": "by",
+    "rights": "All rights reserved"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "see_all": "See All",
+    "read_more": "Read More",
+    "github": "GitHub",
+    "demo": "Demo"
+  }
+}

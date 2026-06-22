@@ -1,0 +1,404 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   DESIGN TOKENS — Randi Sumitro Portfolio
+   Inspired by: Linear, Vercel, Raycast
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Light mode */
+    --background: 0 0% 100%;
+    --foreground: 224 71% 4%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 224 71% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+
+    --accent: 271 91% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    /* Dark mode — pure dark inspired by Linear/Vercel */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 93%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 93%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 93%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 93%;
+
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 14%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 0 0% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-background;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+    transition: background-color 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--primary) / 0.6);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans tracking-tight;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* ============================================================
+     GLASS CARD
+     ============================================================ */
+  .glass-card {
+    @apply relative rounded-xl border border-border bg-card/40 backdrop-blur-md shadow-sm;
+    transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .glass-card:hover {
+    border-color: hsl(var(--border) / 0.8);
+    background-color: hsl(var(--card) / 0.8);
+  }
+
+  /* ============================================================
+     GRADIENT TEXT
+     ============================================================ */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--accent)) 100%
+    );
+  }
+
+  .gradient-text-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      #60a5fa 0%,
+      #a78bfa 50%,
+      #f472b6 100%
+    );
+  }
+
+  /* ============================================================
+     NOISE TEXTURE OVERLAY
+     ============================================================ */
+  .noise-overlay {
+    position: relative;
+  }
+
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.03;
+  }
+
+  /* ============================================================
+     GRID BACKGROUND
+     ============================================================ */
+  .grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--border) / 0.4) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  /* ============================================================
+     GLOW ORBS (Hidden for sharp Linear aesthetic)
+     ============================================================ */
+  .glow-orb {
+    display: none;
+  }
+
+  .glow-orb-primary {
+    background: radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%);
+  }
+
+  .glow-orb-accent {
+    background: radial-gradient(circle, hsl(var(--accent)) 0%, transparent 70%);
+  }
+
+  /* ============================================================
+     TECH BADGE
+     ============================================================ */
+  .tech-badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium;
+    @apply border border-border/50 bg-muted/50 text-muted-foreground;
+    @apply transition-all duration-200 hover:border-primary/50 hover:bg-primary/10 hover:text-primary;
+  }
+
+  /* ============================================================
+     SECTION CONTAINER
+     ============================================================ */
+  .section-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* ============================================================
+     ANIMATED UNDERLINE LINK
+     ============================================================ */
+  .animated-link {
+    @apply relative inline-block;
+  }
+
+  .animated-link::after {
+    content: "";
+    @apply absolute bottom-0 left-0 h-px w-0 bg-primary;
+    transition: width 0.3s ease;
+  }
+
+  .animated-link:hover::after {
+    @apply w-full;
+  }
+
+  /* ============================================================
+     SHIMMER BUTTON
+     ============================================================ */
+  .shimmer-button {
+    @apply relative overflow-hidden;
+  }
+
+  .shimmer-button::after {
+    content: "";
+    @apply absolute inset-0 opacity-0;
+    background: linear-gradient(
+      105deg,
+      transparent 20%,
+      hsl(0 0% 100% / 0.15) 50%,
+      transparent 80%
+    );
+    transition: opacity 0.3s;
+    animation: shimmer 1.5s ease-in-out infinite;
+  }
+
+  .shimmer-button:hover::after {
+    @apply opacity-100;
+  }
+
+  /* ============================================================
+     STAT CARD
+     ============================================================ */
+  .stat-card {
+    @apply glass-card flex flex-col items-center gap-2 p-6 text-center;
+    @apply transition-all duration-300 hover:scale-105;
+  }
+
+  /* ============================================================
+     SKILL BAR
+     ============================================================ */
+  .skill-bar-track {
+    @apply relative h-2 w-full overflow-hidden rounded-full bg-muted;
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full;
+    background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    box-shadow: 0 0 8px hsl(var(--primary) / 0.5);
+  }
+
+  /* ============================================================
+     TIMELINE
+     ============================================================ */
+  .timeline-line {
+    @apply absolute left-6 top-0 h-full w-px;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      hsl(var(--primary)) 20%,
+      hsl(var(--primary)) 80%,
+      transparent 100%
+    );
+  }
+
+  /* ============================================================
+     PROJECT CARD
+     ============================================================ */
+  .project-card {
+    @apply glass-card cursor-pointer overflow-hidden;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+  }
+
+  /* ============================================================
+     NAV LINK
+     ============================================================ */
+  .nav-link {
+    @apply relative px-3 py-2 text-sm font-medium text-muted-foreground transition-colors;
+    @apply hover:text-foreground;
+  }
+
+  .nav-link.active {
+    @apply text-foreground;
+  }
+
+  .nav-link.active::after {
+    content: "";
+    @apply absolute bottom-0 left-3 right-3 h-px bg-primary;
+  }
+
+  /* ============================================================
+     CODE BLOCK
+     ============================================================ */
+  .code-block {
+    @apply rounded-xl border border-border/50 bg-[hsl(225,27%,7%)] p-4 font-mono text-sm;
+    @apply text-green-400;
+  }
+}
+
+@layer utilities {
+  /* Text balance */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Gradient border */
+  .gradient-border {
+    position: relative;
+  }
+
+  .gradient-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* No scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* ============================================================
+   CUSTOM ANIMATIONS
+   ============================================================ */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: hsl(var(--primary)) }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Gradient animation for hero */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* Dot pattern */
+.dot-pattern {
+  background-image: radial-gradient(hsl(var(--border)) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
