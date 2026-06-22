@@ -160,7 +160,7 @@ export default async function AboutPage() {
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary via-accent to-primary p-1 animate-gradient blur-sm opacity-50" />
                   <div className="relative rounded-2xl overflow-hidden border border-primary/20">
                     <Image
-                      src={`https://avatars.githubusercontent.com/u/136390141?v=4&t=${Date.now()}`}
+                      src="https://avatars.githubusercontent.com/u/136390141?v=4"
                       alt="Randi Sumitro"
                       width={200}
                       height={200}
