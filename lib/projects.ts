@@ -808,6 +808,104 @@ The system can detect various air pollutants including CO2, ammonia, alcohol, an
     complexity: 5,
     year: 2025,
   },
+  {
+    id: "g4",
+    slug: "simponi-ai-time-estimation",
+    name: "[Feature Release] AI Time Estimation SIMPONI",
+    nameEn: "[Feature Release] AI Time Estimation SIMPONI",
+    description: "Fitur Estimasi Waktu Perizinan Berbasis Machine Learning untuk aplikasi SIMPONI.",
+    descriptionEn: "Machine Learning-based Licensing Time Estimation Feature for SIMPONI application.",
+    longDescription: `Sebagai developer, salah satu tantangan terbesar di sektor e-Government adalah memberikan transparansi dan kepastian waktu kepada masyarakat. Selama ini, pemohon izin sering kali bertanya-tanya, "Kapan izin saya selesai diproses?"\n\nUntuk menjawab tantangan tersebut, saya baru saja merilis Novelty Feature terbaru untuk aplikasi SIMPONI (Sistem Perizinan Online Pematangsiantar): Fitur Estimasi Waktu Perizinan Berbasis Machine Learning!\n\nDaripada menggunakan estimasi statis (SOP baku), sistem kini dapat memprediksi secara dinamis berapa hari sebuah permohonan izin akan selesai berdasarkan rekam jejak historis pemrosesan perizinan yang nyata.\n\nTechnical Highlights & Architecture:\n- Model AI: Menggunakan algoritma CatBoost Regressor yang dilatih dari ribuan data historis permohonan. Model ini mencapai akurasi yang sangat baik dengan tingkat error (MAPE) hanya 16.69% dan R² 58.65%.\n- Microservice Architecture: Model AI di-deploy sebagai RESTful API Microservice menggunakan Python (Flask) & Gunicorn yang berjalan mandiri (isolated) di server.\n- Seamless Integration: Backend utama SIMPONI yang menggunakan PHP (CodeIgniter) bertindak sebagai API Consumer. Aplikasi akan mengirimkan payload fitur via cURL, lalu menampilkan hasil estimasi hari secara real-time ke masyarakat.\n- Native UI/UX: Tampilan prediksi di-desain menyatu 100% dengan template asli dashboard SIMPONI menggunakan komponen Card, Progress Bar, dan Timeline, sehingga UX tetap intuitif dan elegan.\n\nDampak dari fitur ini? Transparansi yang jauh lebih baik. Masyarakat tidak perlu lagi bingung melacak sejauh mana progres berkas mereka, karena AI akan memberikan estimasi confidence interval secara matematis.`,
+    longDescriptionEn: `As a developer, one of the biggest challenges in the e-Government sector is providing transparency and time certainty to the public. For answering this, I recently released a Machine Learning-based Time Estimation feature for the SIMPONI application.\n\nInstead of using static estimations, the system can now dynamically predict how many days a permit application will take based on historical processing track records.\n\nTechnical Highlights: CatBoost Regressor model (MAPE 16.69%, R² 58.65%), isolated Python Flask RESTful microservice, seamless PHP CodeIgniter API consumer integration, and native UI/UX integration.`,
+    category: "ai-ml",
+    role: "AI & Backend Engineer",
+    roleEn: "AI & Backend Engineer",
+    institution: "Pemerintah Kota Pematangsiantar",
+    status: "production",
+    businessGoal: "Memberikan transparansi dan kepastian waktu kepada masyarakat terkait pemrosesan perizinan.",
+    businessGoalEn: "Provide transparency and time certainty to the public regarding permit processing.",
+    technologies: [
+      { name: "Python", category: "language", color: "#3572A5" },
+      { name: "CatBoost", category: "ml", color: "#FFDF00" },
+      { name: "Flask", category: "backend", color: "#000000" },
+      { name: "PHP", category: "language", color: "#777BB4" },
+      { name: "CodeIgniter", category: "backend", color: "#EF4223" },
+    ],
+    features: [
+      "Prediksi waktu penyelesaian dinamis",
+      "Model CatBoost Regressor (MAPE 16.69%)",
+      "Arsitektur Microservice Flask Python",
+      "Integrasi API Consumer PHP cURL"
+    ],
+    featuresEn: [
+      "Dynamic completion time prediction",
+      "CatBoost Regressor model (MAPE 16.69%)",
+      "Python Flask microservice architecture",
+      "PHP cURL API consumer integration"
+    ],
+    challenges: [
+      "Menggantikan SOP statis dengan prediksi AI",
+      "Integrasi antara sistem legacy PHP dan AI Python"
+    ],
+    challengesEn: [
+      "Replacing static SOPs with AI predictions",
+      "Integration between legacy PHP systems and Python AI"
+    ],
+    solutions: [
+      "Melatih model CatBoost dengan ribuan data historis nyata",
+      "Membangun Microservice mandiri terisolasi via RESTful API"
+    ],
+    solutionsEn: [
+      "Training CatBoost model with thousands of real historical data",
+      "Building an isolated independent Microservice via RESTful API"
+    ],
+    results: [
+      "Akurasi model sangat baik (MAPE 16.69%, R² 58.65%)",
+      "Memberikan rentang waktu estimasi ke masyarakat secara matematis"
+    ],
+    resultsEn: [
+      "Excellent model accuracy (MAPE 16.69%, R² 58.65%)",
+      "Provides mathematical estimation timeframes to the public"
+    ],
+    impact: "Transparansi publik meningkat signifikan, mengurangi kebingungan status berkas.",
+    impactEn: "Public transparency significantly improved, reducing file status confusion.",
+    responsibilities: [
+      "Data engineering & training model CatBoost",
+      "Membangun API Flask",
+      "Membangun integrasi UI/UX di CodeIgniter"
+    ],
+    responsibilitiesEn: [
+      "Data engineering & CatBoost model training",
+      "Building Flask API",
+      "Building UI/UX integration in CodeIgniter"
+    ],
+    architecture: [
+      "Python Flask API Microservice",
+      "PHP CodeIgniter API Consumer"
+    ],
+    architectureEn: [
+      "Python Flask API Microservice",
+      "PHP CodeIgniter API Consumer"
+    ],
+    technicalHighlights: [
+      "CatBoost Regressor (MAPE 16.69%, R² 58.65%)",
+      "Isolated deployment"
+    ],
+    technicalHighlightsEn: [
+      "CatBoost Regressor (MAPE 16.69%, R² 58.65%)",
+      "Isolated deployment"
+    ],
+    screenshots: {
+      desktop: "/projects/simponi-ai-feature.png",
+      mobile: "/projects/simponi-ai-feature.png"
+    },
+    gallery: [
+      "/projects/simponi-ai-feature.png"
+    ],
+    githubUrl: "https://github.com/randisumitro/simponi-showcase",
+    complexity: 4,
+    year: 2026,
+  },
 ];
 
 export const getFeaturedProjects = (): Project[] =>
