@@ -22,6 +22,108 @@ export async function generateMetadata({
 
 const experiences = [
   {
+    id: "perkakasku-ios",
+    titleId: "Perkakasku iOS — Aplikasi Native SwiftUI",
+    titleEn: "Perkakasku iOS — Native SwiftUI Client",
+    organizationId: "Proyek Produk",
+    organizationEn: "Product Engineering",
+    type: "personal" as const,
+    startDate: "November 2026",
+    endDate: "November 2026",
+    descriptionId:
+      "Membangun klien iOS native dengan Swift 6 & SwiftUI (PDFKit, Vision OCR, CoreImage, PencilKit, SwiftData) untuk 21 alat PDF, gambar, dan dokumen privacy-first tanpa dependensi eksternal.",
+    descriptionEn:
+      "Built a native Swift 6 & SwiftUI iOS client (PDFKit, Vision OCR, CoreImage, PencilKit, SwiftData) delivering 21 privacy-first PDF, image, and document tools with zero external dependencies.",
+    technologies: ["Swift", "SwiftUI", "PDFKit", "Apple Vision", "CoreImage", "SwiftData"],
+    icon: Code2,
+    color: "text-orange-400",
+  },
+  {
+    id: "aave",
+    titleId: "AAVE — Autonomous AI Video Editor",
+    titleEn: "AAVE — Autonomous AI Video Editor",
+    organizationId: "Proyek Riset & Produk",
+    organizationEn: "AI Systems Project",
+    type: "personal" as const,
+    startDate: "November 2026",
+    endDate: "November 2026",
+    descriptionId:
+      "Merancang editor video AI otonom berbasis plugin Adobe Premiere Pro & After Effects UXP dengan Local Companion WebSocket, FastAPI, EDL validation, dan skema PostgreSQL/pgvector.",
+    descriptionEn:
+      "Architected a plugin-first autonomous AI video editor for Adobe Premiere Pro & After Effects UXP featuring a FastAPI WebSocket Local Companion, EDL schema validation, and PostgreSQL/pgvector.",
+    technologies: ["TypeScript", "Python", "FastAPI", "Adobe UXP", "PostgreSQL", "Docker"],
+    icon: Code2,
+    color: "text-purple-400",
+  },
+  {
+    id: "perkakasku-web",
+    titleId: "Perkakasku — Platform Utilitas Web Client-Side",
+    titleEn: "Perkakasku — Client-Side Online Utility Platform",
+    organizationId: "Proyek Produk (Privat)",
+    organizationEn: "Product Engineering (Private)",
+    type: "personal" as const,
+    startDate: "November 2026",
+    endDate: "November 2026",
+    descriptionId:
+      "Mengembangkan platform utilitas dokumen dan gambar MERN Stack dengan 21 alat pemrosesan lokal (pdf-lib, Tesseract.js, ONNX Runtime Web), SEO middleware, dan integrasi Midtrans/Xendit.",
+    descriptionEn:
+      "Built a MERN Stack document & image utility platform featuring 21 client-side tools (pdf-lib, Tesseract.js, ONNX Runtime Web), Express SEO injection, and Midtrans/Xendit billing.",
+    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Tesseract.js", "Docker"],
+    icon: Briefcase,
+    color: "text-sky-400",
+  },
+  {
+    id: "simptrack",
+    titleId: "SIMPTRACK Enterprise — Manajemen Proyek, SIG & Perizinan",
+    titleEn: "SIMPTRACK Enterprise — GIS Project & Permit Compliance",
+    organizationId: "Proyek Arsitektur Enterprise",
+    organizationEn: "Enterprise Architecture Project",
+    type: "personal" as const,
+    startDate: "Oktober 2026",
+    endDate: "Oktober 2026",
+    descriptionId:
+      "Membangun platform manajemen portofolio proyek geospasial (Leaflet + MongoDB 2dsphere) dan kepatuhan perizinan PTSP berbasis Finite State Machine 5 tahap, RBAC, serta 31 automated tests.",
+    descriptionEn:
+      "Built a geospatial project portfolio platform (Leaflet + MongoDB 2dsphere) and PTSP licensing compliance engine powered by a 5-stage Finite State Machine, RBAC, and 31 automated tests.",
+    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Leaflet", "Jest"],
+    icon: Briefcase,
+    color: "text-emerald-400",
+  },
+  {
+    id: "motocare-mobile",
+    titleId: "MotoCare Mobile — Pelacak Perawatan Kendaraan",
+    titleEn: "MotoCare Mobile — Vehicle Maintenance Tracker",
+    organizationId: "Proyek Mobile",
+    organizationEn: "Mobile Project",
+    type: "personal" as const,
+    startDate: "Oktober 2026",
+    endDate: "Oktober 2026",
+    descriptionId:
+      "Mengembangkan aplikasi mobile lintas platform dengan Expo Router, React Native, TypeScript, TanStack Query, dan Zustand untuk pencatatan servis, biaya perawatan, dan pengingat jadwal.",
+    descriptionEn:
+      "Developed a cross-platform mobile app using Expo Router, React Native, TypeScript, TanStack Query, and Zustand for tracking maintenance logs, expenses, and service reminders.",
+    technologies: ["TypeScript", "React Native", "Expo Router", "TanStack Query", "Zustand"],
+    icon: Code2,
+    color: "text-cyan-400",
+  },
+  {
+    id: "cafe-platform",
+    titleId: "Cafe Platform — POS, Operasional & AI CCTV Analytics",
+    titleEn: "Cafe Platform — POS, Operations & AI CCTV Analytics",
+    organizationId: "Proyek Klien (Privat)",
+    organizationEn: "Client Project (Private)",
+    type: "client" as const,
+    startDate: "September 2026",
+    endDate: "September 2026",
+    descriptionId:
+      "Membangun sistem POS, manajemen meja kafe & sesi PlayStation, inventaris resep, Laravel Reverb real-time, dan microservice Computer Vision FastAPI untuk deteksi anomali CCTV.",
+    descriptionEn:
+      "Built a Laravel & Filament Admin POS, table/PlayStation session, and recipe inventory system integrated with Laravel Reverb and a FastAPI Computer Vision anomaly detection service.",
+    technologies: ["PHP", "Laravel", "Filament", "Python", "FastAPI", "Docker"],
+    icon: Briefcase,
+    color: "text-amber-400",
+  },
+  {
     id: "truthguard-ai",
     titleId: "TruthGuard AI — Platform Deteksi Penipuan",
     titleEn: "TruthGuard AI — Fraud Detection Platform",
@@ -213,10 +315,10 @@ export default async function ExperiencePage({ params }: ExperiencePageProps) {
         <AnimatedSection immediate className="mb-12">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { count: "3+", labelId: "Proyek AI/ML", labelEn: "AI/ML Projects" },
+              { count: "4+", labelId: "Proyek AI/ML", labelEn: "AI/ML Projects" },
+              { count: "2+", labelId: "Aplikasi Mobile", labelEn: "Mobile Apps" },
+              { count: "6+", labelId: "Full Stack & Web", labelEn: "Full Stack & Web" },
               { count: "2+", labelId: "Sistem IoT", labelEn: "IoT Systems" },
-              { count: "3+", labelId: "Web App", labelEn: "Web Apps" },
-              { count: "5+", labelId: "Stack Utama", labelEn: "Core Stacks" },
             ].map((stat, i) => (
               <div
                 key={i}

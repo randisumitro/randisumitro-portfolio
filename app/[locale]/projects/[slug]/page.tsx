@@ -111,6 +111,11 @@ export default async function ProjectDetailPage({
                   Production
                 </span>
               )}
+              {project.isPrivate && (
+                <span className="glass-subtle rounded-full px-3 py-1">
+                  {isId ? "Repositori Privat" : "Private Repository"}
+                </span>
+              )}
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -375,6 +380,10 @@ export default async function ProjectDetailPage({
                 ) : project.status === "production" ? (
                   <span className="glass-subtle inline-flex items-center rounded-xl px-5 py-3 text-sm font-medium text-muted-foreground">
                     {isId ? "Intranet Privat" : "Private Intranet"}
+                  </span>
+                ) : project.isPrivate ? (
+                  <span className="glass-subtle inline-flex items-center rounded-xl px-5 py-3 text-sm font-medium text-muted-foreground">
+                    {isId ? "Repositori Privat" : "Private Repository"}
                   </span>
                 ) : null}
 

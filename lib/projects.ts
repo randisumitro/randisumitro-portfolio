@@ -7,6 +7,548 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    id: "p1",
+    slug: "perkakasku",
+    name: "Perkakasku — Platform Utilitas Online Client-Side",
+    nameEn: "Perkakasku — Client-Side Online Utility Platform",
+    description:
+      "Platform utilitas dokumen, PDF, dan gambar berbasis MERN Stack dengan 21 alat pemrosesan privacy-first yang dijalankan langsung di browser maupun sandbox server.",
+    descriptionEn:
+      "MERN Stack document, PDF, and image utility platform offering 21 privacy-first processing tools executed client-side in the browser and via backend sandbox.",
+    longDescription: `Perkakasku (MERN Glassy v30) adalah platform utilitas web untuk pemrosesan PDF, gambar, dan dokumen dengan pendekatan privacy-first: sebagian besar alat berjalan langsung di browser menggunakan WebAssembly dan pustaka client-side (pdf-lib, pdfjs-dist, Tesseract.js OCR, dan ONNX Runtime Web untuk background removal).
+
+Untuk kebutuhan konversi format berat dan manajemen pengguna, platform ini dilengkapi backend Node.js/Express dan MongoDB dengan middleware injeksi meta SEO per-rute, rate limiting, serta integrasi pembayaran Midtrans dan Xendit.`,
+    longDescriptionEn: `Perkakasku (MERN Glassy v30) is a web utility studio for PDF, image, and document workflows designed with a privacy-first architecture: core tools execute locally in the browser via WebAssembly and client-side engines (pdf-lib, pdfjs-dist, Tesseract.js OCR, and ONNX Runtime Web background removal).
+
+For server-side document conversions and account/plan management, the platform pairs a Node.js/Express and MongoDB backend with per-route SEO injection middleware, rate limiting, and Midtrans/Xendit payment adapters.`,
+    category: "full-stack",
+    technologies: [
+      { name: "React", category: "frontend", color: "#61DAFB" },
+      { name: "Node.js", category: "backend", color: "#339933" },
+      { name: "Express.js", category: "backend", color: "#6B7280" },
+      { name: "MongoDB", category: "database", color: "#47A248" },
+      { name: "Zustand", category: "frontend", color: "#F59E0B" },
+      { name: "Tesseract.js", category: "ml", color: "#38BDF8" },
+      { name: "ONNX Runtime", category: "ml", color: "#005CED" },
+      { name: "Docker", category: "devops", color: "#2496ED" },
+    ],
+    features: [
+      "21 utilitas PDF, gambar, OCR, dan dokumen terintegrasi",
+      "Eksekusi client-side untuk privasi dokumen pengguna",
+      "OCR multi-bahasa dengan Tesseract.js dan penghapusan latar belakang via ONNX Runtime",
+      "Middleware injeksi SEO dinamis pada Express + MongoDB",
+      "Integrasi gerbang pembayaran Midtrans dan fallback Xendit",
+    ],
+    featuresEn: [
+      "21 integrated PDF, image, OCR, and document utilities",
+      "Client-side processing architecture for user document privacy",
+      "Browser-based OCR with Tesseract.js and background removal via ONNX Runtime Web",
+      "Dynamic per-route SEO metadata middleware on Express + MongoDB",
+      "Midtrans primary and Xendit fallback payment integrations",
+    ],
+    challenges: [
+      "Menjalankan operasi PDF, OCR, dan segmentasi gambar secara ringan di sisi klien",
+      "Menyajikan meta tag SEO dinamis di atas aplikasi React/Vite SPA tanpa placeholder build-time",
+    ],
+    challengesEn: [
+      "Running PDF manipulation, OCR, and image segmentation efficiently in the browser",
+      "Serving dynamic per-route SEO metadata for a Vite React SPA cleanly",
+    ],
+    solutions: [
+      "Mengombinasikan pemrosesan lokal pdf-lib/ONNX Web dengan fallback endpoint server terkendali",
+      "Membangun Express SEO middleware yang menyuntikkan OpenGraph, canonical, dan JSON-LD dari database",
+    ],
+    solutionsEn: [
+      "Combining local pdf-lib/ONNX Web execution with dedicated Express conversion endpoints",
+      "Implementing Express SEO injection middleware for OpenGraph, canonical tags, and JSON-LD",
+    ],
+    architecture: [
+      "React 18 + Vite SPA client with Zustand state management",
+      "Node.js + Express REST API with MongoDB persistence via Docker Compose",
+      "Hybrid local WASM/Canvas processing + server multipart conversion pipeline",
+    ],
+    architectureEn: [
+      "React 18 + Vite SPA client with Zustand state management",
+      "Node.js + Express REST API with MongoDB persistence via Docker Compose",
+      "Hybrid local WASM/Canvas processing + server multipart conversion pipeline",
+    ],
+    technicalHighlights: [
+      "Privacy-first client-side document processing",
+      "Express dynamic SEO injection & structured logging",
+      "Dual payment gateway adapters (Midtrans & Xendit)",
+    ],
+    technicalHighlightsEn: [
+      "Privacy-first client-side document processing",
+      "Express dynamic SEO injection & structured logging",
+      "Dual payment gateway adapters (Midtrans & Xendit)",
+    ],
+    githubUrl: "#",
+    isPrivate: true,
+    complexity: 5,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "21 Web Tools",
+      "Client-Side WASM",
+      "MERN Stack",
+    ],
+    highlightsEn: [
+      "21 Web Tools",
+      "Client-Side WASM",
+      "MERN Stack",
+    ],
+  },
+  {
+    id: "p2",
+    slug: "perkakasku-mobile-ios",
+    name: "Perkakasku iOS — Native SwiftUI Client",
+    nameEn: "Perkakasku iOS — Native SwiftUI Client",
+    description:
+      "Klien iOS native (Swift 6 & SwiftUI) untuk ekosistem Perkakasku dengan 21 alat PDF, gambar, dan dokumen privacy-first tanpa dependensi eksternal.",
+    descriptionEn:
+      "Native SwiftUI iOS client for Perkakasku featuring 21 privacy-first PDF, image, and document tools built solely with Apple frameworks.",
+    longDescription: `Perkakasku iOS adalah aplikasi iOS native yang dibangun murni menggunakan Swift 6 dan Apple frameworks (SwiftUI, PDFKit, Vision, CoreImage, PencilKit, QuickLook, SwiftData) tanpa WebView atau dependensi pihak ketiga.
+
+Sebanyak 15 dari 21 alur kerja berjalan sepenuhnya offline di sandbox perangkat iOS (kompresi/merge/split PDF, tanda tangan PencilKit, OCR Vision id-ID & en-US, segmentasi latar belakang, QR Code), sementara alat konversi format tertentu dapat terhubung secara opsional ke backend Perkakasku.`,
+    longDescriptionEn: `Perkakasku iOS is a native iOS application built purely with Swift 6 and Apple system frameworks (SwiftUI, PDFKit, Vision, CoreImage, PencilKit, QuickLook, SwiftData) with zero external CocoaPods/SPM dependencies and no WebView wrapper.
+
+Fifteen of its 21 workflows execute completely offline inside the iOS device sandbox—including PDFKit manipulation, PencilKit PDF signing, Apple Vision OCR (id-ID & en-US) and foreground segmentation—with optional REST multipart integration for server-backed document conversions.`,
+    category: "mobile",
+    technologies: [
+      { name: "Swift", category: "language", color: "#F05138" },
+      { name: "SwiftUI", category: "mobile", color: "#0EA5E9" },
+      { name: "PDFKit", category: "mobile", color: "#EF4444" },
+      { name: "Apple Vision", category: "ml", color: "#8B5CF6" },
+      { name: "CoreImage", category: "mobile", color: "#10B981" },
+      { name: "SwiftData", category: "database", color: "#F59E0B" },
+    ],
+    features: [
+      "21 alat produktivitas PDF, gambar, OCR, dan dokumen dalam 5 tab navigasi",
+      "15 alur kerja berjalan 100% offline di perangkat menggunakan Apple Vision & PDFKit",
+      "Tanda tangan PDF interaktif dengan PencilKit dan pratinjau QuickLook",
+      "Penyimpanan riwayat dan favorit lokal via SwiftData serta token di iOS Keychain",
+      "Integrasi opsional ke backend Docker/Cloud Perkakasku",
+    ],
+    featuresEn: [
+      "21 PDF, image, OCR, and document utilities across a 5-tab native studio",
+      "15 completely offline on-device workflows powered by Apple Vision & PDFKit",
+      "Interactive PDF signatures via PencilKit and native QuickLook previews",
+      "Local history & favorites persisted with SwiftData and iOS Keychain storage",
+      "Optional multipart REST integration with Perkakasku backend",
+    ],
+    challenges: [
+      "Menyamakan kapabilitas 21 alat dari platform web ke pengalaman iOS native tanpa pustaka pihak ketiga",
+      "Menjaga pemrosesan gambar dan dokumen tetap cepat dan hemat memori di sandbox iOS",
+    ],
+    challengesEn: [
+      "Delivering feature parity across all 21 web tools natively without third-party dependencies",
+      "Keeping document and image processing responsive and memory-safe inside the iOS sandbox",
+    ],
+    solutions: [
+      "Memanfaatkan PDFKit, CoreGraphics, CoreImage, dan Apple Vision OCR/segmentation secara native",
+      "Menyusun arsitektur layanan terpisah (PDFService, ImageService, VisionOCRService, APIService) dengan Swift Concurrency",
+    ],
+    solutionsEn: [
+      "Leveraging native PDFKit, CoreGraphics, CoreImage, and Apple Vision OCR/segmentation engines",
+      "Structuring modular async/await service layers (PDFService, ImageService, VisionOCRService, APIService)",
+    ],
+    architecture: [
+      "Pure SwiftUI + Swift Concurrency (async/await) with zero third-party packages",
+      "On-device engines: PDFKit, PencilKit, CoreImage, Vision OCR & Foreground Segmentation",
+      "SwiftData local persistence + KeychainHelper + URLSession multipart client",
+    ],
+    architectureEn: [
+      "Pure SwiftUI + Swift Concurrency (async/await) with zero third-party packages",
+      "On-device engines: PDFKit, PencilKit, CoreImage, Vision OCR & Foreground Segmentation",
+      "SwiftData local persistence + KeychainHelper + URLSession multipart client",
+    ],
+    technicalHighlights: [
+      "Zero external dependencies (pure Apple SDK)",
+      "15 offline privacy-first workflows",
+      "Unit-tested tool registry and processing helpers via XCTest",
+    ],
+    technicalHighlightsEn: [
+      "Zero external dependencies (pure Apple SDK)",
+      "15 offline privacy-first workflows",
+      "Unit-tested tool registry and processing helpers via XCTest",
+    ],
+    githubUrl: "https://github.com/randisumitro/perkakasku-mobile-ios",
+    complexity: 5,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "Swift 6 & SwiftUI",
+      "15 Offline Tools",
+      "Zero Dependencies",
+    ],
+    highlightsEn: [
+      "Swift 6 & SwiftUI",
+      "15 Offline Tools",
+      "Zero Dependencies",
+    ],
+  },
+  {
+    id: "p3",
+    slug: "aave",
+    name: "AAVE — Autonomous AI Video Editor",
+    nameEn: "AAVE — Autonomous AI Video Editor",
+    description:
+      "Sistem penyuntingan video AI berbasis plugin untuk Adobe Premiere Pro & After Effects dengan arsitektur UXP, Local Companion WebSocket, dan backend FastAPI.",
+    descriptionEn:
+      "Plugin-first autonomous AI video editing system for Adobe Premiere Pro and After Effects integrating UXP adapters, a FastAPI Local Companion, and PostgreSQL.",
+    longDescription: `AAVE (Autonomous AI Video Editor) dirancang dengan arsitektur plugin-first untuk menghubungkan Adobe Premiere Pro, Adobe After Effects, Local Companion Service, dan AI Backend berbasis FastAPI.
+
+Proyek ini memisahkan adapter runtime UXP untuk Premiere Pro dan After Effects, berkomunikasi real-time melalui HTTP/WebSocket dengan Local Companion Service, serta memvalidasi setiap operasi timeline menggunakan skema Edit Decision List (EDL) sebelum dieksekusi.`,
+    longDescriptionEn: `AAVE (Autonomous AI Video Editor) uses a plugin-first architecture to connect Adobe Premiere Pro, Adobe After Effects, a Local Companion Service, and a FastAPI AI backend.
+
+It separates Premiere Pro and After Effects UXP plugin runtimes as independent adapters communicating over HTTP and WebSocket with the Local Companion Service, validating timeline operations through structured Edit Decision List (EDL) schemas prior to execution.`,
+    category: "ai-ml",
+    technologies: [
+      { name: "TypeScript", category: "language", color: "#3178C6" },
+      { name: "Python", category: "language", color: "#3572A5" },
+      { name: "FastAPI", category: "backend", color: "#009688" },
+      { name: "Adobe UXP", category: "frontend", color: "#FF0000" },
+      { name: "PostgreSQL", category: "database", color: "#336791" },
+      { name: "Redis", category: "database", color: "#DC382D" },
+      { name: "Docker", category: "devops", color: "#2496ED" },
+    ],
+    features: [
+      "Plugin UXP terpisah untuk Adobe Premiere Pro dan Adobe After Effects",
+      "CommandRegistry dengan validasi skema Edit Decision List (EDL) sebelum eksekusi",
+      "Local Companion Service (FastAPI + WebSocket) untuk manajemen dan progres job",
+      "Migrasi skema PostgreSQL 24 tabel dengan dukungan ekstensi pgvector",
+      "Shared TypeScript SDK (@aave/shared-types, @aave/edit-decision-schema, @aave/plugin-sdk)",
+    ],
+    featuresEn: [
+      "Dedicated UXP plugins for Adobe Premiere Pro and Adobe After Effects",
+      "CommandRegistry with Edit Decision List (EDL) validation before timeline execution",
+      "FastAPI + WebSocket Local Companion Service for real-time job orchestration",
+      "24-table PostgreSQL database migration with pgvector support",
+      "Shared TypeScript packages (@aave/shared-types, @aave/edit-decision-schema, @aave/plugin-sdk)",
+    ],
+    challenges: [
+      "Menyatukan kontrol dua host Adobe berbeda (Premiere Pro & After Effects) di bawah satu kontrak perintah",
+      "Menjamin operasi AI pada proyek timeline pengguna tervalidasi dan aman sebelum dijalankan",
+    ],
+    challengesEn: [
+      "Unifying command contracts across distinct Adobe Premiere Pro and After Effects UXP runtimes",
+      "Ensuring AI-generated timeline edits are schema-validated before execution",
+    ],
+    solutions: [
+      "Membuat paket kontrak bersama (@aave/adobe-integration & @aave/edit-decision-schema)",
+      "Memisahkan eksekusi lokal via Local Companion WebSocket dan validasi EDL di backend FastAPI",
+    ],
+    solutionsEn: [
+      "Designing shared TypeScript contracts (@aave/adobe-integration & @aave/edit-decision-schema)",
+      "Decoupling host execution through a FastAPI Local Companion WebSocket bridge and EDL validation",
+    ],
+    architecture: [
+      "Monorepo workspaces: Premiere Pro UXP & After Effects UXP plugin adapters",
+      "Local Companion Service (FastAPI + WebSocket) + Core Backend API",
+      "PostgreSQL (24 tables + pgvector) & Redis via Docker Compose",
+    ],
+    architectureEn: [
+      "Monorepo workspaces: Premiere Pro UXP & After Effects UXP plugin adapters",
+      "Local Companion Service (FastAPI + WebSocket) + Core Backend API",
+      "PostgreSQL (24 tables + pgvector) & Redis via Docker Compose",
+    ],
+    technicalHighlights: [
+      "Plugin-first Adobe UXP architecture",
+      "Structured Edit Decision List (EDL) validation",
+      "PostgreSQL + pgvector + Redis infrastructure",
+    ],
+    technicalHighlightsEn: [
+      "Plugin-first Adobe UXP architecture",
+      "Structured Edit Decision List (EDL) validation",
+      "PostgreSQL + pgvector + Redis infrastructure",
+    ],
+    githubUrl: "https://github.com/randisumitro/aave",
+    complexity: 5,
+    status: "active",
+    year: 2026,
+    highlights: [
+      "Adobe UXP Plugins",
+      "FastAPI + WebSocket",
+      "EDL Schema",
+    ],
+    highlightsEn: [
+      "Adobe UXP Plugins",
+      "FastAPI + WebSocket",
+      "EDL Schema",
+    ],
+  },
+  {
+    id: "p4",
+    slug: "simptrack",
+    name: "SIMPTRACK Enterprise — Manajemen Portofolio Proyek & SIG",
+    nameEn: "SIMPTRACK Enterprise — GIS Project & Permit Compliance",
+    description:
+      "Platform manajemen portofolio proyek geospasial (Leaflet & MongoDB 2dsphere) dan kepatuhan perizinan PTSP berbasis Finite State Machine serta RBAC.",
+    descriptionEn:
+      "Geospatial project portfolio management (Leaflet & MongoDB 2dsphere) and PTSP permit compliance platform powered by a Finite State Machine and RBAC.",
+    longDescription: `SIMPTRACK Enterprise adalah platform manajemen proyek geospasial dan perizinan terpadu berbasis MERN Stack (MongoDB, Express.js, React, Node.js). Sistem ini dibangun untuk memantau proyek fisik multi-lokasi secara spasial sekaligus menegakkan alur kepatuhan perizinan formal (HSE, AMDAL, PBG).
+
+Di sisi backend, platform mengimplementasikan indeks spasial MongoDB 2dsphere, Finite State Machine (FSM) 5 tahap untuk siklus izin PTSP dengan proteksi idempotency, RBAC 6 peran, audit trail otomatis, dan ekspor laporan PDF/Excel.`,
+    longDescriptionEn: `SIMPTRACK Enterprise is a geospatial project portfolio and permit compliance platform built on the MERN Stack (MongoDB, Express.js, React, Node.js). It provides spatial visibility across multi-site physical projects while enforcing formal licensing compliance workflows (HSE, AMDAL, PBG).
+
+The backend implements MongoDB 2dsphere geospatial indexing, a 5-stage Finite State Machine (FSM) for PTSP permit processing with idempotency protection, 6-role RBAC, automated audit logs, and direct PDF/Excel report exports.`,
+    category: "full-stack",
+    technologies: [
+      { name: "React", category: "frontend", color: "#61DAFB" },
+      { name: "Node.js", category: "backend", color: "#339933" },
+      { name: "Express.js", category: "backend", color: "#6B7280" },
+      { name: "MongoDB", category: "database", color: "#47A248" },
+      { name: "Leaflet", category: "frontend", color: "#199900" },
+      { name: "Tailwind CSS", category: "frontend", color: "#06B6D4" },
+      { name: "Jest", category: "devops", color: "#C21325" },
+      { name: "Docker", category: "devops", color: "#2496ED" },
+    ],
+    features: [
+      "GIS Command Center dengan peta Leaflet WGS84 dan filter radius spasial MongoDB 2dsphere",
+      "Alur kerja perizinan PTSP berbasis Finite State Machine 5 tahap",
+      "Pelacakan status izin publik tanpa login via nomor tanda terima",
+      "RBAC 6 peran dengan proteksi BOLA/IDOR dan audit log otomatis",
+      "Ekspor laporan PDF (PDFKit) dan Excel (ExcelJS) serta 31 automated tests (Jest + Supertest)",
+    ],
+    featuresEn: [
+      "GIS Command Center with Leaflet WGS84 maps and MongoDB 2dsphere radius queries",
+      "5-stage Finite State Machine (FSM) workflow for PTSP licensing compliance",
+      "Public unauthenticated permit status tracking via receipt numbers",
+      "6-role RBAC with BOLA/IDOR protections and automated audit trail",
+      "Native PDF (PDFKit) & Excel (ExcelJS) exports plus 31 Jest/Supertest integration tests",
+    ],
+    challenges: [
+      "Menjaga integritas transisi status perizinan agar bebas pengajuan ganda atau lompatan status",
+      "Menyajikan kueri spasial radius lokasi proyek secara cepat di peta interaktif",
+    ],
+    challengesEn: [
+      "Enforcing strict permit state transitions without duplicate submissions or invalid state jumps",
+      "Querying and rendering multi-radius project locations smoothly on an interactive map",
+    ],
+    solutions: [
+      "Menerapkan Workflow FSM 5 tahap disertai idempotency key/hash protection",
+      "Menggunakan indeks MongoDB 2dsphere ($near/$maxDistance) terhubung ke Leaflet map drawer",
+    ],
+    solutionsEn: [
+      "Implementing a 5-stage Workflow FSM backed by idempotency key/hash protection",
+      "Indexing GeoJSON coordinates with MongoDB 2dsphere ($near/$maxDistance) wired to Leaflet",
+    ],
+    architecture: [
+      "React 18 + Vite + Leaflet SPA frontend",
+      "Node.js + Express REST API with JWT, RBAC, Zod validation & rate limiting",
+      "MongoDB (2dsphere spatial indexes) + Jest/Supertest test suite",
+    ],
+    architectureEn: [
+      "React 18 + Vite + Leaflet SPA frontend",
+      "Node.js + Express REST API with JWT, RBAC, Zod validation & rate limiting",
+      "MongoDB (2dsphere spatial indexes) + Jest/Supertest test suite",
+    ],
+    technicalHighlights: [
+      "31 passed automated tests across 7 suites (Jest + Supertest)",
+      "MongoDB 2dsphere geospatial queries + Leaflet GIS",
+      "Cryptographic creator attribution & audit trail",
+    ],
+    technicalHighlightsEn: [
+      "31 passed automated tests across 7 suites (Jest + Supertest)",
+      "MongoDB 2dsphere geospatial queries + Leaflet GIS",
+      "Cryptographic creator attribution & audit trail",
+    ],
+    githubUrl: "https://github.com/randisumitro/simptrack",
+    complexity: 5,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "GIS + MongoDB 2dsphere",
+      "Workflow FSM",
+      "31 Passed Tests",
+    ],
+    highlightsEn: [
+      "GIS + MongoDB 2dsphere",
+      "Workflow FSM",
+      "31 Passed Tests",
+    ],
+  },
+  {
+    id: "p5",
+    slug: "motocare-mobile",
+    name: "MotoCare Mobile — Manajemen Perawatan Kendaraan",
+    nameEn: "MotoCare Mobile — Vehicle Maintenance Tracker",
+    description:
+      "Aplikasi mobile berbasis Expo Router & React Native (TypeScript) untuk mencatat kendaraan, riwayat servis, pengeluaran perawatan, dan pengingat jadwal servis.",
+    descriptionEn:
+      "Cross-platform mobile application built with Expo Router and React Native (TypeScript) for tracking vehicles, service history, maintenance expenses, and scheduled reminders.",
+    longDescription: `MotoCare Mobile adalah aplikasi mobile berbasis React Native dan Expo Router (SDK 57) yang dirancang untuk membantu pemilik kendaraan mengelola data kendaraan, mencatat riwayat perawatan, memantau pengeluaran servis, dan mengatur pengingat perawatan berkala.
+
+Aplikasi menggunakan file-based routing Expo Router, manajemen state server dengan TanStack Query, state lokal dengan Zustand, serta dukungan modul native Expo untuk notifikasi, lokasi, dan penyimpanan token aman via Expo Secure Store.`,
+    longDescriptionEn: `MotoCare Mobile is a cross-platform mobile app built with React Native and Expo Router (SDK 57) to help vehicle owners manage multiple vehicles, log service records, monitor maintenance expenses, and schedule recurring reminders.
+
+The codebase leverages Expo Router file-based navigation, TanStack Query for server-state synchronization, Zustand for client state, and native Expo modules including Notifications, Location, Image, and Secure Store.`,
+    category: "mobile",
+    technologies: [
+      { name: "TypeScript", category: "language", color: "#3178C6" },
+      { name: "React Native", category: "mobile", color: "#61DAFB" },
+      { name: "Expo Router", category: "mobile", color: "#000020" },
+      { name: "TanStack Query", category: "frontend", color: "#FF4154" },
+      { name: "Zustand", category: "frontend", color: "#F59E0B" },
+      { name: "Axios", category: "frontend", color: "#5A29E4" },
+    ],
+    features: [
+      "Manajemen multi-kendaraan dengan profil dan riwayat servis lengkap",
+      "Pelacakan pengeluaran perawatan dan statistik biaya berkala",
+      "Pengingat servis terjadwal berbasis Expo Notifications",
+      "Autentikasi terpisah dan penyimpanan kredensial dengan Expo Secure Store",
+      "Sinkronisasi API responsif menggunakan TanStack Query dan Axios",
+    ],
+    featuresEn: [
+      "Multi-vehicle management with detailed profiles and service history",
+      "Maintenance expense tracking and periodic cost statistics",
+      "Scheduled service reminders powered by Expo Notifications",
+      "Dedicated auth flow with credential storage via Expo Secure Store",
+      "Reactive API caching and synchronization with TanStack Query & Axios",
+    ],
+    challenges: [
+      "Menjaga konsistensi state antara data kendaraan, catatan biaya, dan jadwal pengingat di perangkat mobile",
+      "Menyusun navigasi terpisah untuk alur autentikasi dan layar utama aplikasi",
+    ],
+    challengesEn: [
+      "Keeping vehicle records, expense logs, and reminder schedules synchronized cleanly",
+      "Structuring clean route groups for authentication and nested maintenance workflows",
+    ],
+    solutions: [
+      "Menggunakan route groups Expo Router ((auth) & (app)) dengan pemisahan layer API terpusat",
+      "Mengombinasikan TanStack Query untuk cache API dan Zustand untuk state aplikasi ringan",
+    ],
+    solutionsEn: [
+      "Organizing Expo Router route groups ((auth) & (app)) with typed API service modules",
+      "Pairing TanStack Query cache invalidation with lightweight Zustand stores",
+    ],
+    architecture: [
+      "Expo SDK 57 + React Native + Expo Router file-based navigation",
+      "Typed API layer (vehicles, maintenance, expenses, user) via Axios + TanStack Query",
+      "Zustand client store + Expo Secure Store & Notifications",
+    ],
+    architectureEn: [
+      "Expo SDK 57 + React Native + Expo Router file-based navigation",
+      "Typed API layer (vehicles, maintenance, expenses, user) via Axios + TanStack Query",
+      "Zustand client store + Expo Secure Store & Notifications",
+    ],
+    technicalHighlights: [
+      "TypeScript + Expo Router route groups",
+      "TanStack Query + Zustand state architecture",
+      "Cross-platform iOS, Android & Web targets",
+    ],
+    technicalHighlightsEn: [
+      "TypeScript + Expo Router route groups",
+      "TanStack Query + Zustand state architecture",
+      "Cross-platform iOS, Android & Web targets",
+    ],
+    githubUrl: "https://github.com/randisumitro/motocare-mobile",
+    complexity: 4,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "Expo & React Native",
+      "TypeScript",
+      "TanStack Query",
+    ],
+    highlightsEn: [
+      "Expo & React Native",
+      "TypeScript",
+      "TanStack Query",
+    ],
+  },
+  {
+    id: "p6",
+    slug: "cafe-platform",
+    name: "Cafe Platform — POS, Operasional & AI CCTV Analytics",
+    nameEn: "Cafe Platform — POS, Operations & AI CCTV Analytics",
+    description:
+      "Platform manajemen kafe dan rental PlayStation berbasis Laravel & Filament dengan POS, stok resep, siaran real-time Laravel Reverb, serta microservice AI CCTV FastAPI.",
+    descriptionEn:
+      "Integrated cafe and PlayStation lounge operations platform built with Laravel, Filament Admin, Laravel Reverb, and a Python FastAPI Computer Vision anomaly service.",
+    longDescription: `Cafe Platform adalah sistem operasional terintegrasi untuk bisnis kafe dan rental PlayStation yang dibangun menggunakan PHP 8.3, Laravel, dan Filament Admin. Sistem mencakup manajemen meja, sesi PlayStation (beserta perpanjangan waktu), POS, manajemen shift, stok bahan, versi resep, serta pencatatan waste dan audit.
+
+Selain inti transaksi di Laravel + Laravel Reverb untuk pembaruan real-time, sistem ini terintegrasi dengan layanan Computer Vision Python FastAPI (ai_service) untuk mendeteksi peristiwa CCTV seperti product assembly, tumpahan (spill), atau akses tidak sah.`,
+    longDescriptionEn: `Cafe Platform is an integrated operations system for cafe and PlayStation lounge businesses built with PHP 8.3, Laravel, and Filament Admin. It covers table and PlayStation session management, POS orders and payments, shift tracking, ingredient inventory, versioned recipes, waste records, and audit trails.
+
+Alongside Laravel Reverb real-time broadcasting, the platform integrates a Python FastAPI Computer Vision microservice (ai_service) that analyzes camera zones and sends webhook alerts for product assembly, spills, and unauthorized access anomalies.`,
+    category: "full-stack",
+    technologies: [
+      { name: "PHP", category: "language", color: "#777BB4" },
+      { name: "Laravel", category: "backend", color: "#FF2D20" },
+      { name: "Filament", category: "frontend", color: "#F59E0B" },
+      { name: "Python", category: "language", color: "#3572A5" },
+      { name: "FastAPI", category: "backend", color: "#009688" },
+      { name: "Tailwind CSS", category: "frontend", color: "#06B6D4" },
+      { name: "Docker", category: "devops", color: "#2496ED" },
+    ],
+    features: [
+      "Panel admin Filament multi-peran dengan Spatie Permission & Activity Log",
+      "Manajemen sesi meja kafe & billing PlayStation (perpanjangan sesi & transfer meja)",
+      "Kontrol stok inventaris, versi resep (RecipeVersion), dan catatan waste",
+      "Microservice Computer Vision FastAPI untuk deteksi anomali zona kamera CCTV",
+      "Broadcasting event real-time dengan Laravel Reverb serta ekspor PDF/Excel",
+    ],
+    featuresEn: [
+      "Multi-role Filament Admin panels with Spatie Permission & Activity Log",
+      "Cafe table & PlayStation lounge session billing (extensions & table transfers)",
+      "Ingredient inventory control, recipe versioning, and waste tracking",
+      "FastAPI Computer Vision microservice for CCTV zone anomaly webhooks",
+      "Real-time broadcasting via Laravel Reverb and PDF/Excel operational exports",
+    ],
+    challenges: [
+      "Menyatukan transaksi kasir POS, manajemen inventaris berbasis resep, dan billing sesi timer real-time",
+      "Menghubungkan event deteksi AI kamera secara asinkron tanpa memblokir alur kasir utama",
+    ],
+    challengesEn: [
+      "Unifying POS billing, recipe-level inventory deductions, and live PlayStation session timers",
+      "Ingesting asynchronous AI camera anomaly events without blocking core POS operations",
+    ],
+    solutions: [
+      "Merancang model domain Laravel terstruktur (Order, TableSession, PsSession, RecipeVersion, AnomalyReview)",
+      "Menjalankan layanan AI Computer Vision pada container FastAPI terpisah dengan webhook asinkron",
+    ],
+    solutionsEn: [
+      "Designing a cohesive Laravel domain model (Order, TableSession, PsSession, RecipeVersion, AnomalyReview)",
+      "Isolating Computer Vision processing inside a Python FastAPI microservice posting async webhooks",
+    ],
+    architecture: [
+      "Laravel 13 + Filament Admin + Sanctum + Laravel Reverb WebSockets",
+      "Python FastAPI AI Computer Vision microservice (Docker Compose)",
+      "Blade + Tailwind CSS v4 + Vite frontend build",
+    ],
+    architectureEn: [
+      "Laravel 13 + Filament Admin + Sanctum + Laravel Reverb WebSockets",
+      "Python FastAPI AI Computer Vision microservice (Docker Compose)",
+      "Blade + Tailwind CSS v4 + Vite frontend build",
+    ],
+    technicalHighlights: [
+      "40+ domain models covering POS, inventory, PS sessions & AI anomaly review",
+      "Laravel + Python FastAPI hybrid microservice architecture",
+      "Production Docker Compose & cPanel deployment support",
+    ],
+    technicalHighlightsEn: [
+      "40+ domain models covering POS, inventory, PS sessions & AI anomaly review",
+      "Laravel + Python FastAPI hybrid microservice architecture",
+      "Production Docker Compose & cPanel deployment support",
+    ],
+    githubUrl: "#",
+    isPrivate: true,
+    complexity: 5,
+    status: "completed",
+    year: 2026,
+    highlights: [
+      "Laravel & Filament",
+      "FastAPI AI CCTV",
+      "POS & Inventory",
+    ],
+    highlightsEn: [
+      "Laravel & Filament",
+      "FastAPI AI CCTV",
+      "POS & Inventory",
+    ],
+  },
+  {
     id: "1",
     slug: "truthguard-ai",
     name: "TruthGuard AI — Platform Deteksi Penipuan",

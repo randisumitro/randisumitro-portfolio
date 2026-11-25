@@ -20,6 +20,7 @@ export interface Project {
   solutions: string[];
   solutionsEn: string[];
   githubUrl: string;
+  isPrivate?: boolean;
   demoUrl?: string;
   imageUrl?: string;
   complexity: 1 | 2 | 3 | 4 | 5;
@@ -54,6 +55,7 @@ export interface Project {
 export type ProjectCategory =
   | "ai-ml"
   | "full-stack"
+  | "mobile"
   | "iot"
   | "web-app"
   | "devops"
@@ -69,6 +71,7 @@ export interface Technology {
 export type TechCategory =
   | "frontend"
   | "backend"
+  | "mobile"
   | "database"
   | "ml"
   | "iot"

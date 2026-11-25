@@ -245,6 +245,7 @@ export function FeaturedProjectsSection() {
   const categoryColors: Record<string, string> = {
     "ai-ml": "bg-purple-500/15 text-purple-700 dark:text-purple-300 border-purple-500/25",
     "full-stack": "bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/25",
+    mobile: "bg-indigo-500/15 text-indigo-700 dark:text-indigo-300 border-indigo-500/25",
     iot: "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/25",
     "web-app": "bg-amber-500/15 text-amber-800 dark:text-amber-300 border-amber-500/25",
     devops: "bg-rose-500/15 text-rose-700 dark:text-rose-300 border-rose-500/25",
@@ -254,6 +255,7 @@ export function FeaturedProjectsSection() {
   const categoryLabels: Record<string, { id: string; en: string }> = {
     "ai-ml": { id: "AI/ML", en: "AI/ML" },
     "full-stack": { id: "Full Stack", en: "Full Stack" },
+    mobile: { id: "Mobile", en: "Mobile" },
     iot: { id: "IoT", en: "IoT" },
     "web-app": { id: "Web App", en: "Web App" },
     devops: { id: "DevOps", en: "DevOps" },

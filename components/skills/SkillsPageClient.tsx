@@ -12,6 +12,7 @@ import {
   Wrench,
   ChevronDown,
   CheckCircle2,
+  Smartphone,
 } from "lucide-react";
 import { skillGroups, languageStats } from "@/lib/skills";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
@@ -39,6 +40,12 @@ const categoryConfig: Record<
     labelId: "Backend",
     labelEn: "Backend",
     color: "text-emerald-400",
+  },
+  mobile: {
+    icon: Smartphone,
+    labelId: "Mobile & iOS",
+    labelEn: "Mobile & iOS",
+    color: "text-indigo-400",
   },
   database: {
     icon: Database,

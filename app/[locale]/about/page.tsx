@@ -212,13 +212,16 @@ export default async function AboutPage({ params }: AboutPageProps) {
                   {[
                     "Python",
                     "TypeScript",
-                    "Next.js",
-                    "PHP",
+                    "Swift / SwiftUI",
+                    "React & Next.js",
+                    "React Native",
+                    "Node.js",
+                    "PHP / Laravel",
                     "FastAPI",
+                    "MongoDB",
                     "PostgreSQL",
                     "Arduino",
                     "Docker",
-                    "Azure AI",
                   ].map((tag) => (
                     <span key={tag} className="tech-badge">
                       {tag}

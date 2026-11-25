@@ -123,7 +123,7 @@ export async function getGitHubProfile(): Promise<GitHubStats> {
       htmlUrl: "https://github.com/randisumitro",
       followers: 0,
       following: 0,
-      publicRepos: 9,
+      publicRepos: 15,
       totalStars: 0,
       totalCommits: 0,
       topLanguages: [
