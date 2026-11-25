@@ -14,11 +14,9 @@
     "roles": [
       "Full Stack Developer",
       "IoT Engineer",
-      "Machine Learning Researcher",
-      "System Analyst",
-      "Web Developer"
+      "Machine Learning Researcher"
     ],
-    "description": "Full Stack Engineer dengan spesialisasi dalam membangun layanan publik digital skala produksi, sistem cerdas (AI/ML), dan arsitektur enterprise modern berkinerja tinggi.",
+    "description": "Full Stack Engineer yang membangun platform layanan publik skala produksi, sistem machine learning terapan, dan perangkat IoT terintegrasi.",
     "cta_projects": "Lihat Proyek",
     "cta_contact": "Hubungi Saya",
     "cta_resume": "Download CV",
@@ -26,7 +24,7 @@
     "available": "Tersedia untuk kolaborasi"
   },
   "stats": {
-    "title": "GitHub Analytics",
+    "title": "Ringkasan GitHub",
     "repos": "Repository",
     "stars": "Stars",
     "followers": "Followers",
@@ -35,29 +33,29 @@
   },
   "about": {
     "title": "Tentang Saya",
-    "subtitle": "Engineering + Scale + Impact",
-    "intro": "Saya adalah Senior Full Stack Engineer yang memiliki rekam jejak terbukti dalam merancang, mengembangkan, dan memelihara sistem digital skala besar untuk layanan publik dan enterprise.",
+    "subtitle": "Rekayasa Perangkat Lunak, IoT & Applied ML",
+    "intro": "Saya adalah Full Stack Engineer yang berfokus pada perancangan, pengembangan, dan pengelolaan sistem digital layanan publik, machine learning terapan, serta integrasi perangkat IoT.",
     "journey_title": "Pengalaman Profesional",
     "journey": [
       {
         "year": "2023",
         "title": "Digitalisasi Pengadaan Daerah",
-        "description": "Memimpin pengembangan SIMPONI, sistem manajemen pengadaan digital untuk transparansi birokrasi"
+        "description": "Memimpin pengembangan SIMPONI, sistem manajemen pengadaan digital untuk transparansi administrasi daerah."
       },
       {
         "year": "2024",
         "title": "Portal Perizinan Terpadu",
-        "description": "Membangun sistem tracking perizinan dan notifikasi real-time DPMPTSP"
+        "description": "Membangun sistem pelacakan perizinan dan notifikasi real-time untuk DPMPTSP."
       },
       {
         "year": "2025",
-        "title": "Super App Layanan Publik",
-        "description": "Merancang arsitektur microservices untuk MPP Digital, sentralisasi 100+ layanan"
+        "title": "Portal Layanan Publik Terpadu",
+        "description": "Merancang arsitektur MPP Digital untuk menyatukan layanan pemerintah kota dalam satu portal SSO."
       },
       {
         "year": "2026",
-        "title": "Enterprise AI & Full Stack",
-        "description": "Membangun TruthGuard AI dengan Azure AI Language dan FastAPI"
+        "title": "Applied AI & Full Stack",
+        "description": "Mengembangkan TruthGuard AI dengan Azure AI Language dan FastAPI serta microservice estimasi waktu berbasis ML."
       }
     ],
     "focus_title": "Bidang Fokus",
@@ -72,13 +70,13 @@
     "interests": [
       "AI untuk deteksi penipuan dan analisis risiko",
       "IoT untuk monitoring lingkungan",
-      "MLOps dan production ML systems",
+      "MLOps dan sistem ML produksi",
       "Sistem informasi untuk layanan publik"
     ]
   },
   "skills": {
     "title": "Keahlian Teknis",
-    "subtitle": "Teknologi yang digunakan dalam proyek nyata",
+    "subtitle": "Teknologi yang diterapkan pada sistem produksi dan proyek rekayasa",
     "categories": {
       "language": "Bahasa Pemrograman",
       "frontend": "Frontend",
@@ -93,7 +91,7 @@
   },
   "projects": {
     "title": "Proyek",
-    "subtitle": "Karya nyata dari repository GitHub",
+    "subtitle": "Sistem produksi, aplikasi AI, dan proyek rekayasa IoT pilihan",
     "filter_all": "Semua",
     "filter_ai": "AI/ML",
     "filter_fullstack": "Full Stack",
@@ -113,15 +111,15 @@
   },
   "research": {
     "title": "Penelitian",
-    "subtitle": "Eksplorasi ilmiah dan eksperimen teknis",
+    "subtitle": "Eksperimen teknis dan pengembangan machine learning terapan",
     "methodology": "Metodologi",
     "results": "Hasil",
     "dataset": "Dataset",
     "accuracy": "Akurasi Model"
   },
-    "experience": {
+  "experience": {
     "title": "Pengalaman",
-    "subtitle": "Karier dan proyek profesional",
+    "subtitle": "Rekam jejak pengembangan perangkat lunak dan sistem terapan",
     "personal": "Proyek Pribadi",
     "academic": "Riset & Akademik",
     "organization": "Proyek Open Source",
@@ -130,7 +128,7 @@
   },
   "contact": {
     "title": "Kontak",
-    "subtitle": "Mari berkolaborasi dan bangun sesuatu yang luar biasa",
+    "subtitle": "Terbuka untuk kolaborasi rekayasa perangkat lunak, konsultasi teknis, dan proyek freelance",
     "email_label": "Email",
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn",
@@ -140,7 +138,7 @@
     "form_message": "Pesan",
     "form_submit": "Kirim Pesan",
     "form_sending": "Mengirim...",
-    "form_success": "Pesan berhasil dikirim! Saya akan membalas secepatnya.",
+    "form_success": "Pesan berhasil dikirim. Saya akan membalas secepatnya.",
     "form_error": "Gagal mengirim pesan. Silakan coba lagi.",
     "availability": "Tersedia untuk",
     "availability_items": [
@@ -151,7 +149,7 @@
     ]
   },
   "footer": {
-    "built_with": "Dibangun dengan",
+    "built_with": "Dirancang dan dikembangkan oleh",
     "by": "oleh",
     "rights": "Seluruh hak cipta dilindungi"
   },

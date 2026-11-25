@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { projects } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://randisumitro.vercel.app";
@@ -13,17 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ];
 
-  const projectSlugs = [
-    "truthguard-ai",
-    "sistem-informasi-pkh",
-    "sistem-absensi-biometrik-iot",
-    "antrian-skck",
-    "deteksi-polusi-udara",
-    "mlops-monitoring-logging",
-    "eksperimen-ml-sml",
-    "deteksi-udara-iot-v2",
-  ];
-
   const routes: MetadataRoute.Sitemap = [];
 
   for (const locale of locales) {
@@ -35,9 +25,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: page === "" ? 1.0 : 0.8,
       });
     }
-    for (const slug of projectSlugs) {
+    for (const project of projects) {
       routes.push({
-        url: `${baseUrl}/${locale}/projects/${slug}`,
+        url: `${baseUrl}/${locale}/projects/${project.slug}`,
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.7,

@@ -1,40 +1,49 @@
 import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { Clock, Code2, GraduationCap, User, Briefcase } from "lucide-react";
 import { AnimatedSection } from "@/components/shared/AnimatedSection";
 
-import { IoTBackground } from "@/components/backgrounds/IoTBackground";
+interface ExperiencePageProps {
+  params: Promise<{ locale: string }>;
+}
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = await getLocale();
+export async function generateMetadata({
+  params,
+}: ExperiencePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const isId = locale === "id";
   return {
-    title: locale === "id" ? "Pengalaman | Randi Sumitro" : "Experience | Randi Sumitro",
-    description:
-      locale === "id"
-        ? "Timeline pengalaman profesional dan akademik Randi Sumitro."
-        : "Professional and academic experience timeline of Randi Sumitro.",
+    title: isId ? "Pengalaman" : "Experience",
+    description: isId
+      ? "Rekam jejak proyek profesional, klien, dan akademik Randi Sumitro."
+      : "Professional, client, and academic engineering experience of Randi Sumitro.",
   };
 }
 
 const experiences = [
   {
     id: "truthguard-ai",
-    titleId: "TruthGuard AI — Enterprise Fraud Detection Platform",
-    titleEn: "TruthGuard AI — Enterprise Fraud Detection Platform",
+    titleId: "TruthGuard AI — Platform Deteksi Penipuan",
+    titleEn: "TruthGuard AI — Fraud Detection Platform",
     organizationId: "Proyek Pribadi / Hackathon",
     organizationEn: "Personal Project / Hackathon",
     type: "personal" as const,
     startDate: "April 2026",
     endDate: "April 2026",
     descriptionId:
-      "Merancang dan membangun platform deteksi penipuan enterprise menggunakan Azure AI Language, FastAPI, PostgreSQL, dan Docker. Proyek ini menampilkan akurasi model 89.2% dengan fitur Explainable AI dan Business Impact Calculator.",
+      "Merancang dan membangun platform deteksi penipuan menggunakan Azure AI Language, FastAPI, PostgreSQL, dan Docker dengan akurasi model 89.2% serta kalkulator dampak bisnis.",
     descriptionEn:
-      "Designed and built an enterprise fraud detection platform using Azure AI Language, FastAPI, PostgreSQL, and Docker. The project features 89.2% model accuracy with Explainable AI and Business Impact Calculator.",
-    technologies: ["Python", "FastAPI", "Azure AI Language", "PostgreSQL", "Docker", "JavaScript"],
-    projectSlug: "truthguard-ai",
+      "Designed and built a fraud detection platform using Azure AI Language, FastAPI, PostgreSQL, and Docker featuring 89.2% model accuracy and explainable risk scoring.",
+    technologies: [
+      "Python",
+      "FastAPI",
+      "Azure AI Language",
+      "PostgreSQL",
+      "Docker",
+      "JavaScript",
+    ],
     icon: Code2,
     color: "text-purple-400",
-    bg: "bg-purple-500/10",
   },
   {
     id: "mlops-monitoring",
@@ -46,14 +55,12 @@ const experiences = [
     startDate: "April 2026",
     endDate: "April 2026",
     descriptionId:
-      "Implementasi infrastruktur MLOps lengkap dengan Prometheus dan Grafana untuk memonitor model machine learning Titanic survival prediction dalam environment production.",
+      "Implementasi pipeline MLOps dengan Prometheus dan Grafana untuk memonitor performa model machine learning pada lingkungan produksi.",
     descriptionEn:
-      "Implemented complete MLOps infrastructure with Prometheus and Grafana to monitor a Titanic survival prediction machine learning model in a production environment.",
+      "Implemented MLOps observability pipeline with Prometheus and Grafana to monitor machine learning model performance in production.",
     technologies: ["Python", "Prometheus", "Grafana", "Docker"],
-    projectSlug: "mlops-monitoring-logging",
     icon: GraduationCap,
-    color: "text-orange-400",
-    bg: "bg-orange-500/10",
+    color: "text-amber-400",
   },
   {
     id: "sml-experiments",
@@ -65,14 +72,18 @@ const experiences = [
     startDate: "April 2026",
     endDate: "April 2026",
     descriptionId:
-      "Serangkaian eksperimen machine learning menggunakan Jupyter Notebook untuk mengeksplorasi algoritma supervised learning dan best practices model evaluation.",
+      "Eksperimen terstruktur menggunakan Jupyter Notebook untuk mengevaluasi algoritma supervised learning dan teknik validasi silang.",
     descriptionEn:
-      "Series of machine learning experiments using Jupyter Notebook to explore supervised learning algorithms and model evaluation best practices.",
-    technologies: ["Python", "Scikit-learn", "Jupyter Notebook", "Pandas", "NumPy"],
-    projectSlug: "eksperimen-ml-sml",
+      "Structured machine learning experiments in Jupyter Notebook evaluating supervised learning algorithms and cross-validation pipelines.",
+    technologies: [
+      "Python",
+      "Scikit-learn",
+      "Jupyter Notebook",
+      "Pandas",
+      "NumPy",
+    ],
     icon: GraduationCap,
     color: "text-cyan-400",
-    bg: "bg-cyan-500/10",
   },
   {
     id: "pkh-system",
@@ -84,33 +95,36 @@ const experiences = [
     startDate: "Maret 2026",
     endDate: "Juni 2026",
     descriptionId:
-      "Membangun sistem informasi web full-stack untuk mengelola data penerima program bantuan sosial PKH pemerintah Indonesia dengan multi-level user roles.",
+      "Membangun sistem informasi web full-stack untuk mengelola data penerima program bantuan sosial PKH dengan hak akses multi-peran.",
     descriptionEn:
-      "Built a full-stack web information system for managing data of Indonesian government PKH social welfare program beneficiaries with multi-level user roles.",
+      "Built a full-stack web information system for managing Indonesian government PKH social welfare beneficiary data with multi-role access control.",
     technologies: ["JavaScript", "PHP", "MySQL", "HTML", "CSS"],
-    projectSlug: "sistem-informasi-pkh",
     icon: Briefcase,
-    color: "text-blue-400",
-    bg: "bg-blue-500/10",
+    color: "text-sky-400",
   },
   {
     id: "biometric-iot",
     titleId: "Sistem Absensi Biometrik Berbasis IoT",
     titleEn: "IoT-Based Biometric Attendance System",
     organizationId: "Proyek Klien / Tugas Akhir",
-    organizationEn: "Client Project / Final Assignment",
+    organizationEn: "Client Project / Capstone",
     type: "client" as const,
     startDate: "Juni 2026",
     endDate: "Juni 2026",
     descriptionId:
-      "Mengintegrasikan fingerprint biometric hardware dengan backend PHP dan database MySQL untuk sistem absensi real-time yang dapat dimonitor via browser.",
+      "Mengintegrasikan perangkat sensor sidik jari biometrik dengan backend PHP dan database MySQL untuk pemantauan kehadiran real-time.",
     descriptionEn:
-      "Integrated fingerprint biometric hardware with PHP backend and MySQL database for a real-time attendance system monitorable via browser.",
-    technologies: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Arduino/IoT"],
-    projectSlug: "sistem-absensi-biometrik-iot",
+      "Integrated fingerprint biometric hardware with a PHP backend and MySQL database for real-time browser attendance monitoring.",
+    technologies: [
+      "PHP",
+      "MySQL",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Arduino/IoT",
+    ],
     icon: User,
-    color: "text-green-400",
-    bg: "bg-green-500/10",
+    color: "text-emerald-400",
   },
   {
     id: "air-quality",
@@ -122,14 +136,12 @@ const experiences = [
     startDate: "Juni 2026",
     endDate: "Juni 2026",
     descriptionId:
-      "Mengembangkan sistem monitoring kualitas udara end-to-end dengan sensor Arduino MQ-135, backend Python, dan antarmuka web real-time.",
+      "Mengembangkan sistem pemantauan kualitas udara menggunakan sensor Arduino MQ-135, backend Python, dan antarmuka web real-time.",
     descriptionEn:
-      "Developed end-to-end air quality monitoring system with Arduino MQ-135 sensor, Python backend, and real-time web interface.",
+      "Developed an air quality monitoring system with Arduino MQ-135 sensor, Python serial backend, and real-time web dashboard.",
     technologies: ["Python", "Arduino", "MQ-135 Sensor", "HTML", "JavaScript"],
-    projectSlug: "deteksi-polusi-udara",
     icon: Code2,
     color: "text-teal-400",
-    bg: "bg-teal-500/10",
   },
   {
     id: "skck-queue",
@@ -141,133 +153,139 @@ const experiences = [
     startDate: "Juni 2026",
     endDate: "Juni 2026",
     descriptionId:
-      "Membangun sistem antrian berbasis web untuk pembuatan SKCK yang memungkinkan masyarakat mengambil nomor antrian secara online.",
+      "Membangun sistem antrian berbasis web untuk layanan SKCK sehingga pemohon dapat mengambil nomor antrian secara daring.",
     descriptionEn:
-      "Built a web-based queue system for SKCK issuance that allows citizens to take queue numbers online.",
+      "Built a web-based queue system for SKCK issuance enabling citizens to book queue numbers online.",
     technologies: ["PHP", "HTML", "CSS", "MySQL"],
-    projectSlug: "antrian-skck",
     icon: Briefcase,
     color: "text-yellow-400",
-    bg: "bg-yellow-500/10",
   },
 ];
 
 const typeConfig = {
-  personal: { labelId: "Proyek Pribadi", labelEn: "Personal Project", color: "text-blue-400 border-blue-500/20 bg-blue-500/10" },
-  academic: { labelId: "Akademik", labelEn: "Academic", color: "text-green-400 border-green-500/20 bg-green-500/10" },
-  organization: { labelId: "Organisasi", labelEn: "Organization", color: "text-purple-400 border-purple-500/20 bg-purple-500/10" },
-  client: { labelId: "Proyek Klien", labelEn: "Client Project", color: "text-orange-400 border-orange-500/20 bg-orange-500/10" },
+  personal: {
+    labelId: "Proyek Pribadi",
+    labelEn: "Personal Project",
+    color: "text-sky-700 dark:text-sky-300 border-sky-500/25 bg-sky-500/15",
+  },
+  academic: {
+    labelId: "Akademik",
+    labelEn: "Academic",
+    color: "text-emerald-700 dark:text-emerald-300 border-emerald-500/25 bg-emerald-500/15",
+  },
+  organization: {
+    labelId: "Organisasi",
+    labelEn: "Organization",
+    color: "text-purple-700 dark:text-purple-300 border-purple-500/25 bg-purple-500/15",
+  },
+  client: {
+    labelId: "Proyek Klien",
+    labelEn: "Client Project",
+    color: "text-amber-800 dark:text-amber-300 border-amber-500/25 bg-amber-500/15",
+  },
 };
 
-export default async function ExperiencePage() {
-  const locale = await getLocale();
+export default async function ExperiencePage({ params }: ExperiencePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const isId = locale === "id";
 
   return (
     <div className="relative min-h-screen">
-      <IoTBackground />
-
-      <div className="section-container relative z-10 py-20 pt-32">
-        {/* Header */}
-        <AnimatedSection className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-medium text-primary mb-4">
-            <Clock className="h-3 w-3" />
-            {locale === "id" ? "Timeline Profesional" : "Professional Timeline"}
-          </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-4">
-            {locale === "id" ? "Pengalaman " : "My "}
-            <span className="gradient-text">
-              {locale === "id" ? "Saya" : "Experience"}
+      <div className="section-container py-16 pt-20">
+        <AnimatedSection immediate className="text-center mb-14 space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-primary">
+            {isId ? "Timeline Profesional" : "Professional Timeline"}
+          </p>
+          <h1 className="text-4xl sm:text-5xl font-bold text-foreground">
+            {isId ? "Pengalaman " : "My "}
+            <span className="text-primary">
+              {isId ? "Saya" : "Experience"}
             </span>
           </h1>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            {locale === "id"
-              ? "Perjalanan pengembangan profesional melalui berbagai proyek nyata."
-              : "Professional development journey through various real projects."}
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            {isId
+              ? "Rekam jejak pengembangan aplikasi web, sistem AI/ML, dan perangkat IoT."
+              : "Engineering track record across production web apps, AI/ML pipelines, and IoT systems."}
           </p>
         </AnimatedSection>
 
-        {/* Stats row */}
-        <AnimatedSection delay={0.1} className="mb-12">
+        <AnimatedSection immediate className="mb-12">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[
-              { count: 3, labelId: "Proyek AI/ML", labelEn: "AI/ML Projects" },
-              { count: 2, labelId: "Sistem IoT", labelEn: "IoT Systems" },
-              { count: 3, labelId: "Web App", labelEn: "Web Apps" },
-              { count: 5, labelId: "Teknologi Utama", labelEn: "Core Tech Stacks" },
+              { count: "3+", labelId: "Proyek AI/ML", labelEn: "AI/ML Projects" },
+              { count: "2+", labelId: "Sistem IoT", labelEn: "IoT Systems" },
+              { count: "3+", labelId: "Web App", labelEn: "Web Apps" },
+              { count: "5+", labelId: "Stack Utama", labelEn: "Core Stacks" },
             ].map((stat, i) => (
               <div
                 key={i}
-                className="glass-card rounded-xl p-4 text-center"
+                className="glass-card p-5 text-center"
                 id={`exp-stat-${i}`}
               >
-                <div className="text-3xl font-bold gradient-text mb-1">
-                  {stat.count}+
+                <div className="text-3xl font-bold text-primary mb-1 tabular-nums">
+                  {stat.count}
                 </div>
                 <div className="text-xs text-muted-foreground">
-                  {locale === "id" ? stat.labelId : stat.labelEn}
+                  {isId ? stat.labelId : stat.labelEn}
                 </div>
               </div>
             ))}
           </div>
         </AnimatedSection>
 
-        {/* Timeline */}
         <div className="relative pl-12">
-          {/* Timeline line */}
-          <div className="timeline-line" />
+          <div className="timeline-line" aria-hidden="true" />
 
-          <div className="space-y-8">
+          <div className="space-y-6">
             {experiences.map((exp, index) => (
-              <AnimatedSection key={exp.id} delay={index * 0.08} direction="left">
-                <div
-                  className="relative glass-card rounded-2xl p-6 hover:border-primary/30 transition-all"
+              <AnimatedSection
+                key={exp.id}
+                delay={index * 0.05}
+                direction="left"
+              >
+                <article
+                  className="relative glass-card p-6"
                   id={`experience-${exp.id}`}
                 >
-                  {/* Dot */}
-                  <div className="absolute -left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full bg-background border-2 border-primary/40">
-                    <exp.icon className={`h-4 w-4 ${exp.color}`} />
+                  <div className="glass-card absolute -left-12 top-6 flex h-8 w-8 items-center justify-center rounded-full">
+                    <exp.icon className={`h-4 w-4 ${exp.color}`} aria-hidden="true" />
                   </div>
 
                   <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                    <div className="space-y-1">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span
-                          className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${
-                            typeConfig[exp.type].color
-                          }`}
-                        >
-                          {locale === "id"
-                            ? typeConfig[exp.type].labelId
-                            : typeConfig[exp.type].labelEn}
-                        </span>
-                      </div>
-                      <h3 className="text-lg font-bold text-foreground">
-                        {locale === "id" ? exp.titleId : exp.titleEn}
-                      </h3>
+                    <div className="space-y-1.5">
+                      <span
+                        className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium ${
+                          typeConfig[exp.type].color
+                        }`}
+                      >
+                        {isId
+                          ? typeConfig[exp.type].labelId
+                          : typeConfig[exp.type].labelEn}
+                      </span>
+                      <h2 className="text-lg font-bold text-foreground">
+                        {isId ? exp.titleId : exp.titleEn}
+                      </h2>
                       <p className="text-sm text-primary font-medium">
-                        {locale === "id"
-                          ? exp.organizationId
-                          : exp.organizationEn}
+                        {isId ? exp.organizationId : exp.organizationEn}
                       </p>
                     </div>
 
-                    {/* Date */}
-                    <div className="text-right">
-                      <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
-                        <Clock className="h-3 w-3" />
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
+                      <Clock className="h-3.5 w-3.5" aria-hidden="true" />
+                      <span>
                         {exp.startDate}
-                        {exp.endDate && exp.endDate !== exp.startDate && (
-                          <> — {exp.endDate}</>
-                        )}
-                      </div>
+                        {exp.endDate && exp.endDate !== exp.startDate
+                          ? ` — ${exp.endDate}`
+                          : ""}
+                      </span>
                     </div>
                   </div>
 
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    {locale === "id" ? exp.descriptionId : exp.descriptionEn}
+                  <p className="text-sm text-muted-foreground leading-relaxed mb-4 max-w-[65ch]">
+                    {isId ? exp.descriptionId : exp.descriptionEn}
                   </p>
 
-                  {/* Technologies */}
                   <div className="flex flex-wrap gap-1.5">
                     {exp.technologies.map((tech) => (
                       <span key={tech} className="tech-badge text-xs">
@@ -275,7 +293,7 @@ export default async function ExperiencePage() {
                       </span>
                     ))}
                   </div>
-                </div>
+                </article>
               </AnimatedSection>
             ))}
           </div>

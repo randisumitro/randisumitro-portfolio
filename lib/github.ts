@@ -18,12 +18,14 @@ export async function getGitHubProfile(): Promise<GitHubStats> {
     const [userRes, reposRes] = await Promise.all([
       fetch(`${GITHUB_API}/users/${GITHUB_USERNAME}`, {
         headers,
+        signal: AbortSignal.timeout(4000),
         next: { revalidate: 3600 }, // ISR: revalidate every hour
       }),
       fetch(
         `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
         {
           headers,
+          signal: AbortSignal.timeout(4000),
           next: { revalidate: 3600 },
         }
       ),
@@ -70,6 +72,7 @@ export async function getGitHubProfile(): Promise<GitHubStats> {
       try {
         const graphqlRes = await fetch("https://api.github.com/graphql", {
           method: "POST",
+          signal: AbortSignal.timeout(4000),
           headers: {
             Authorization: `Bearer ${GITHUB_TOKEN}`,
             "Content-Type": "application/json",
@@ -140,6 +143,7 @@ export async function getGitHubRepos(): Promise<GitHubRepo[]> {
       `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
       {
         headers,
+        signal: AbortSignal.timeout(4000),
         next: { revalidate: 3600 },
       }
     );

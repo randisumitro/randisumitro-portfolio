@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Code2, Globe, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
@@ -31,20 +31,30 @@ export function Navbar() {
   useEffect(() => setMounted(true), []);
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 20);
+    setIsScrolled(window.scrollY > 16);
   }, []);
 
   useEffect(() => {
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  const getLocalizedHref = (href: string) => `/${locale}${href === "/" ? "" : href}`;
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
+  const getLocalizedHref = (href: string) =>
+    `/${locale}${href === "/" ? "" : href}`;
 
   const isActive = (href: string) => {
     const localizedHref = getLocalizedHref(href);
@@ -56,179 +66,193 @@ export function Navbar() {
 
   const toggleLocale = () => {
     const newLocale = locale === "id" ? "en" : "id";
-    // Replace locale in pathname
-    const newPathname = pathname.replace(`/${locale}`, `/${newLocale}`);
-    window.location.href = newPathname;
+    const localePattern = new RegExp(`^/${locale}(?=/|$)`);
+    const newPathname = localePattern.test(pathname)
+      ? pathname.replace(localePattern, `/${newLocale}`)
+      : `/${newLocale}`;
+    window.location.assign(newPathname);
   };
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+      <header
         className={cn(
-          "fixed top-0 z-50 w-full transition-all duration-300",
+          "sticky top-0 z-50 w-full transition-all duration-200",
           isScrolled
-            ? "border-b border-border/50 bg-background/80 backdrop-blur-xl shadow-sm"
-            : "bg-transparent"
+            ? "glass-nav"
+            : "border-b border-transparent bg-transparent backdrop-blur-md"
         )}
       >
-        <nav className="section-container flex h-16 items-center justify-between">
-          {/* Logo */}
+        <nav
+          aria-label="Primary"
+          className="section-container flex h-16 items-center justify-between gap-4"
+        >
+          {/* Brand */}
           <Link
             href={getLocalizedHref("/")}
-            className="group flex items-center gap-2"
+            className="group flex items-center gap-2.5 shrink-0"
           >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
-              <Code2 className="h-4 w-4 text-primary" />
+            <div className="glass-subtle flex h-8 w-8 items-center justify-center rounded-lg transition-colors group-hover:border-primary/40">
+              <Code2 className="h-4 w-4 text-primary" aria-hidden="true" />
             </div>
-            <span className="font-bold text-foreground">
-              randi
-              <span className="gradient-text">.dev</span>
+            <span className="font-bold tracking-tight text-foreground">
+              randi<span className="text-primary">.dev</span>
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.key}
-                href={getLocalizedHref(item.href)}
-                className={cn(
-                  "nav-link rounded-lg text-sm font-medium transition-all duration-200",
-                  isActive(item.href)
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
-              >
-                {t(item.key)}
-                {isActive(item.href) && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute bottom-0 left-3 right-3 h-0.5 bg-primary rounded-full"
-                  />
-                )}
-              </Link>
-            ))}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-1 rounded-full glass-subtle px-2 py-1">
+            {navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.key}
+                  href={getLocalizedHref(item.href)}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "relative rounded-full px-3 py-1.5 text-sm font-medium transition-colors",
+                    active
+                      ? "bg-primary/15 text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {t(item.key)}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-2">
-            {/* Language Toggle */}
+          <div className="flex items-center gap-2 shrink-0">
             <button
+              type="button"
               onClick={toggleLocale}
-              className="flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-              aria-label="Toggle language"
+              className="glass-subtle flex h-9 items-center gap-1.5 rounded-lg px-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              aria-label={
+                locale === "id"
+                  ? "Switch language to English"
+                  : "Ubah bahasa ke Indonesia"
+              }
               id="language-toggle"
             >
-              <Globe className="h-4 w-4" />
+              <Globe className="h-4 w-4" aria-hidden="true" />
               <span className="hidden sm:block uppercase font-mono text-xs">
                 {locale === "id" ? "EN" : "ID"}
               </span>
             </button>
 
-            {/* Theme Toggle */}
             {mounted && (
               <button
+                type="button"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                aria-label="Toggle theme"
+                className="glass-subtle flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+                aria-label={
+                  theme === "dark"
+                    ? "Switch to light theme"
+                    : "Switch to dark theme"
+                }
                 id="theme-toggle"
               >
                 {theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
+                  <Sun className="h-4 w-4" aria-hidden="true" />
                 ) : (
-                  <Moon className="h-4 w-4" />
+                  <Moon className="h-4 w-4" aria-hidden="true" />
                 )}
               </button>
             )}
 
-            {/* CTA */}
             <Link
               href={getLocalizedHref("/contact")}
               id="nav-contact-btn"
-              className="hidden sm:flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors shimmer-button"
+              className="hidden sm:inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity"
             >
               {t("contact")}
             </Link>
 
-            {/* Mobile Menu Button */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="flex md:hidden h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-              aria-label="Toggle menu"
+              type="button"
+              onClick={() => setIsOpen((prev) => !prev)}
+              className="glass-subtle flex md:hidden h-9 w-9 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-nav-drawer"
               id="mobile-menu-btn"
             >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? (
+                <X className="h-5 w-5" aria-hidden="true" />
+              ) : (
+                <Menu className="h-5 w-5" aria-hidden="true" />
+              )}
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden"
+              aria-hidden="true"
+              className="fixed inset-0 z-40 bg-black/55 backdrop-blur-sm md:hidden"
             />
 
-            {/* Drawer */}
             <motion.div
+              id="mobile-nav-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile menu"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 z-50 h-full w-72 bg-card border-l border-border shadow-xl md:hidden"
+              transition={{ duration: 0.22, ease: "easeOut" }}
+              className="glass-drawer fixed right-0 top-0 z-50 h-full w-72 shadow-2xl md:hidden"
             >
-              {/* Header */}
-              <div className="flex h-16 items-center justify-between px-6 border-b border-border">
-                <span className="font-bold">
-                  randi<span className="gradient-text">.dev</span>
+              <div className="flex h-16 items-center justify-between px-6 border-b border-[var(--glass-border)]">
+                <span className="font-bold text-foreground">
+                  randi<span className="text-primary">.dev</span>
                 </span>
                 <button
+                  type="button"
                   onClick={() => setIsOpen(false)}
-                  className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted"
+                  aria-label="Close menu"
+                  className="glass-subtle flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-4 w-4" aria-hidden="true" />
                 </button>
               </div>
 
-              {/* Links */}
               <div className="flex flex-col gap-1 p-4">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.key}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                  >
+                {navItems.map((item) => {
+                  const active = isActive(item.href);
+                  return (
                     <Link
+                      key={item.key}
                       href={getLocalizedHref(item.href)}
+                      aria-current={active ? "page" : undefined}
                       className={cn(
-                        "flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors",
-                        isActive(item.href)
-                          ? "bg-primary/10 text-primary"
-                          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                        "flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                        active
+                          ? "bg-primary/15 text-foreground border border-primary/25"
+                          : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
                       )}
                     >
                       {t(item.key)}
                     </Link>
-                  </motion.div>
-                ))}
+                  );
+                })}
 
-                <div className="mt-4 pt-4 border-t border-border space-y-2">
+                <div className="mt-4 pt-4 border-t border-[var(--glass-border)]">
                   <button
+                    type="button"
                     onClick={toggleLocale}
-                    className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+                    className="glass-subtle flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                   >
-                    <Globe className="h-4 w-4" />
+                    <Globe className="h-4 w-4" aria-hidden="true" />
                     Switch to {locale === "id" ? "English" : "Bahasa Indonesia"}
                   </button>
                 </div>

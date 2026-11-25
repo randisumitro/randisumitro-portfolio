@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useLocale } from "next-intl";
-import { motion, AnimatePresence } from "framer-motion";
 import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -22,6 +21,7 @@ interface FormErrors {
 
 export function ContactForm() {
   const locale = useLocale();
+  const isId = locale === "id";
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -29,44 +29,48 @@ export function ContactForm() {
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
 
   const labels = {
-    name: locale === "id" ? "Nama Lengkap" : "Full Name",
+    name: isId ? "Nama Lengkap" : "Full Name",
     email: "Email",
-    subject: locale === "id" ? "Subjek" : "Subject",
-    message: locale === "id" ? "Pesan" : "Message",
-    submit: locale === "id" ? "Kirim Pesan" : "Send Message",
-    sending: locale === "id" ? "Mengirim..." : "Sending...",
-    success: locale === "id"
-      ? "Pesan berhasil dikirim! Saya akan membalas secepatnya."
-      : "Message sent successfully! I'll reply as soon as possible.",
-    error: locale === "id"
-      ? "Gagal mengirim pesan. Silakan email langsung ke randisumitro2@gmail.com"
-      : "Failed to send. Please email directly to randisumitro2@gmail.com",
-    namePlaceholder: locale === "id" ? "Nama Anda" : "Your Name",
-    emailPlaceholder: "your@email.com",
-    subjectPlaceholder: locale === "id" ? "Topik pesan..." : "Message topic...",
-    messagePlaceholder: locale === "id"
-      ? "Ceritakan lebih lanjut tentang kebutuhan atau pertanyaan Anda..."
-      : "Tell me more about your needs or questions...",
+    subject: isId ? "Subjek" : "Subject",
+    message: isId ? "Pesan" : "Message",
+    submit: isId ? "Kirim Pesan" : "Send Message",
+    sending: isId ? "Mengirim..." : "Sending...",
+    success: isId
+      ? "Pesan berhasil dikirim. Saya akan membalas secepatnya."
+      : "Message sent successfully. I will reply as soon as possible.",
+    error: isId
+      ? "Gagal mengirim pesan. Silakan kirim email langsung ke randisumitro2@gmail.com"
+      : "Failed to send message. Please email randisumitro2@gmail.com directly.",
+    namePlaceholder: isId ? "Nama Anda" : "Your Name",
+    emailPlaceholder: "you@example.com",
+    subjectPlaceholder: isId ? "Topik pesan..." : "Message topic...",
+    messagePlaceholder: isId
+      ? "Ceritakan kebutuhan atau pertanyaan Anda..."
+      : "Tell me more about your project or inquiry...",
   };
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
     if (!formData.name.trim()) {
-      newErrors.name = locale === "id" ? "Nama wajib diisi" : "Name is required";
+      newErrors.name = isId ? "Nama wajib diisi" : "Name is required";
     }
     if (!formData.email.trim()) {
-      newErrors.email = locale === "id" ? "Email wajib diisi" : "Email is required";
+      newErrors.email = isId ? "Email wajib diisi" : "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = locale === "id" ? "Format email tidak valid" : "Invalid email format";
+      newErrors.email = isId
+        ? "Format email tidak valid"
+        : "Invalid email format";
     }
     if (!formData.subject.trim()) {
-      newErrors.subject = locale === "id" ? "Subjek wajib diisi" : "Subject is required";
+      newErrors.subject = isId ? "Subjek wajib diisi" : "Subject is required";
     }
-    if (!formData.message.trim() || formData.message.length < 10) {
-      newErrors.message = locale === "id"
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      newErrors.message = isId
         ? "Pesan minimal 10 karakter"
         : "Message must be at least 10 characters";
     }
@@ -109,16 +113,17 @@ export function ContactForm() {
 
   const inputClass = (hasError?: string) =>
     cn(
-      "w-full rounded-xl border bg-card/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground backdrop-blur-sm transition-all",
-      "focus:outline-none focus:ring-2 focus:border-transparent",
-      hasError
-        ? "border-destructive focus:ring-destructive/30"
-        : "border-border/50 focus:ring-primary/30 focus:border-primary/50"
+      "glass-input w-full rounded-xl px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none",
+      hasError ? "border-destructive" : "focus:border-primary"
     );
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5" id="contact-form" noValidate>
-      {/* Name */}
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5"
+      id="contact-form"
+      noValidate
+    >
       <div className="space-y-1.5">
         <label htmlFor="name" className="text-sm font-medium text-foreground">
           {labels.name} <span className="text-destructive">*</span>
@@ -127,22 +132,27 @@ export function ContactForm() {
           id="name"
           name="name"
           type="text"
+          required
           value={formData.name}
           onChange={handleChange}
           placeholder={labels.namePlaceholder}
           className={inputClass(errors.name)}
           disabled={status === "loading" || status === "success"}
           autoComplete="name"
+          aria-invalid={Boolean(errors.name)}
+          aria-describedby={errors.name ? "name-error" : undefined}
         />
         {errors.name && (
-          <p className="text-xs text-destructive flex items-center gap-1">
-            <AlertCircle className="h-3 w-3" />
+          <p
+            id="name-error"
+            className="text-xs text-destructive flex items-center gap-1"
+          >
+            <AlertCircle className="h-3 w-3" aria-hidden="true" />
             {errors.name}
           </p>
         )}
       </div>
 
-      {/* Email */}
       <div className="space-y-1.5">
         <label htmlFor="email" className="text-sm font-medium text-foreground">
           {labels.email} <span className="text-destructive">*</span>
@@ -151,131 +161,152 @@ export function ContactForm() {
           id="email"
           name="email"
           type="email"
+          inputMode="email"
+          required
           value={formData.email}
           onChange={handleChange}
           placeholder={labels.emailPlaceholder}
           className={inputClass(errors.email)}
           disabled={status === "loading" || status === "success"}
           autoComplete="email"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
-          <p className="text-xs text-destructive flex items-center gap-1">
-            <AlertCircle className="h-3 w-3" />
+          <p
+            id="email-error"
+            className="text-xs text-destructive flex items-center gap-1"
+          >
+            <AlertCircle className="h-3 w-3" aria-hidden="true" />
             {errors.email}
           </p>
         )}
       </div>
 
-      {/* Subject */}
       <div className="space-y-1.5">
-        <label htmlFor="subject" className="text-sm font-medium text-foreground">
+        <label
+          htmlFor="subject"
+          className="text-sm font-medium text-foreground"
+        >
           {labels.subject} <span className="text-destructive">*</span>
         </label>
         <input
           id="subject"
           name="subject"
           type="text"
+          required
           value={formData.subject}
           onChange={handleChange}
           placeholder={labels.subjectPlaceholder}
           className={inputClass(errors.subject)}
           disabled={status === "loading" || status === "success"}
+          aria-invalid={Boolean(errors.subject)}
+          aria-describedby={errors.subject ? "subject-error" : undefined}
         />
         {errors.subject && (
-          <p className="text-xs text-destructive flex items-center gap-1">
-            <AlertCircle className="h-3 w-3" />
+          <p
+            id="subject-error"
+            className="text-xs text-destructive flex items-center gap-1"
+          >
+            <AlertCircle className="h-3 w-3" aria-hidden="true" />
             {errors.subject}
           </p>
         )}
       </div>
 
-      {/* Message */}
       <div className="space-y-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
+        <label
+          htmlFor="message"
+          className="text-sm font-medium text-foreground"
+        >
           {labels.message} <span className="text-destructive">*</span>
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
+          required
           value={formData.message}
           onChange={handleChange}
           placeholder={labels.messagePlaceholder}
           className={cn(inputClass(errors.message), "resize-none")}
           disabled={status === "loading" || status === "success"}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "message-error" : undefined}
         />
         <div className="flex items-center justify-between">
           {errors.message ? (
-            <p className="text-xs text-destructive flex items-center gap-1">
-              <AlertCircle className="h-3 w-3" />
+            <p
+              id="message-error"
+              className="text-xs text-destructive flex items-center gap-1"
+            >
+              <AlertCircle className="h-3 w-3" aria-hidden="true" />
               {errors.message}
             </p>
           ) : (
             <span />
           )}
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-muted-foreground tabular-nums">
             {formData.message.length}/500
           </span>
         </div>
       </div>
 
-      {/* Submit */}
       <button
         type="submit"
         disabled={status === "loading" || status === "success"}
         id="contact-submit"
         className={cn(
-          "w-full flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-all",
+          "w-full flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-opacity",
           status === "loading" || status === "success"
-            ? "opacity-70 cursor-not-allowed bg-primary/60"
-            : "bg-primary text-primary-foreground hover:bg-primary/90 shimmer-button shadow-glow hover:shadow-glow-lg"
+            ? "opacity-70 cursor-not-allowed bg-primary/60 text-primary-foreground"
+            : "bg-primary text-primary-foreground hover:opacity-90"
         )}
       >
         {status === "loading" ? (
           <>
-            <Loader2 className="h-4 w-4 animate-spin" />
+            <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
             {labels.sending}
           </>
         ) : status === "success" ? (
           <>
-            <CheckCircle className="h-4 w-4" />
-            {locale === "id" ? "Terkirim!" : "Sent!"}
+            <CheckCircle className="h-4 w-4" aria-hidden="true" />
+            {isId ? "Terkirim" : "Sent"}
           </>
         ) : (
           <>
-            <Send className="h-4 w-4" />
+            <Send className="h-4 w-4" aria-hidden="true" />
             {labels.submit}
           </>
         )}
       </button>
 
-      {/* Status messages */}
-      <AnimatePresence>
-        {status === "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="flex items-start gap-3 rounded-xl bg-green-500/10 border border-green-500/20 p-4"
-            id="contact-success-msg"
-          >
-            <CheckCircle className="h-5 w-5 text-green-400 shrink-0 mt-0.5" />
-            <p className="text-sm text-green-400">{labels.success}</p>
-          </motion.div>
-        )}
-        {status === "error" && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="flex items-start gap-3 rounded-xl bg-destructive/10 border border-destructive/20 p-4"
-            id="contact-error-msg"
-          >
-            <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
-            <p className="text-sm text-destructive">{labels.error}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {status === "success" && (
+        <div
+          role="status"
+          className="flex items-start gap-3 rounded-xl bg-emerald-500/15 border border-emerald-500/25 p-4"
+          id="contact-success-msg"
+        >
+          <CheckCircle
+            className="h-5 w-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5"
+            aria-hidden="true"
+          />
+          <p className="text-sm text-emerald-800 dark:text-emerald-300">{labels.success}</p>
+        </div>
+      )}
+      {status === "error" && (
+        <div
+          role="alert"
+          className="flex items-start gap-3 rounded-xl bg-destructive/15 border border-destructive/30 p-4"
+          id="contact-error-msg"
+        >
+          <AlertCircle
+            className="h-5 w-5 text-destructive shrink-0 mt-0.5"
+            aria-hidden="true"
+          />
+          <p className="text-sm text-destructive">{labels.error}</p>
+        </div>
+      )}
     </form>
   );
 }

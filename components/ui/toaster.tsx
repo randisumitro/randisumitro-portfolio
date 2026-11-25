@@ -12,8 +12,8 @@ export interface Toast {
 
 let addToastFn: ((toast: Omit<Toast, "id">) => void) | null = null;
 
-export function toast(toast: Omit<Toast, "id">) {
-  addToastFn?.(toast);
+export function toast(toastItem: Omit<Toast, "id">) {
+  addToastFn?.(toastItem);
 }
 
 export function Toaster() {
@@ -33,9 +33,9 @@ export function Toaster() {
   }, []);
 
   const icons = {
-    success: <CheckCircle className="h-4 w-4 text-green-400" />,
-    error: <AlertCircle className="h-4 w-4 text-red-400" />,
-    info: <Info className="h-4 w-4 text-blue-400" />,
+    success: <CheckCircle className="h-4 w-4 text-emerald-400" />,
+    error: <AlertCircle className="h-4 w-4 text-destructive" />,
+    info: <Info className="h-4 w-4 text-primary" />,
   };
 
   return (
@@ -44,16 +44,18 @@ export function Toaster() {
         {toasts.map((t) => (
           <motion.div
             key={t.id}
-            initial={{ opacity: 0, x: 100, scale: 0.8 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 100, scale: 0.8 }}
-            className="flex items-center gap-3 rounded-xl border border-border/50 bg-card shadow-card-hover px-4 py-3 backdrop-blur-xl min-w-[280px] max-w-sm"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 12 }}
+            className="glass-card flex items-center gap-3 px-4 py-3 min-w-[280px] max-w-sm"
           >
             {icons[t.type]}
             <p className="flex-1 text-sm text-foreground">{t.message}</p>
             <button
+              type="button"
+              aria-label="Dismiss notification"
               onClick={() =>
-                setToasts((prev) => prev.filter((toast) => toast.id !== t.id))
+                setToasts((prev) => prev.filter((item) => item.id !== t.id))
               }
               className="text-muted-foreground hover:text-foreground transition-colors"
             >

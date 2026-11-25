@@ -3,230 +3,293 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "next-intl";
-import { Code2, Database, BrainCircuit, Cpu, Layers, Wrench, ChevronDown, CheckCircle2 } from "lucide-react";
+import {
+  Code2,
+  Database,
+  BrainCircuit,
+  Cpu,
+  Layers,
+  Wrench,
+  ChevronDown,
+  CheckCircle2,
+} from "lucide-react";
 import { skillGroups, languageStats } from "@/lib/skills";
-import { AnimatedSection, StaggerContainer, StaggerItem } from "@/components/shared/AnimatedSection";
+import { AnimatedSection } from "@/components/shared/AnimatedSection";
 import type { TechCategory } from "@/types";
 import { cn } from "@/lib/utils";
 
-const categoryConfig: Record<TechCategory, { icon: typeof Code2; labelId: string; labelEn: string; color: string }> = {
-  language: { icon: Code2, labelId: "Bahasa Pemrograman", labelEn: "Languages", color: "text-blue-400" },
-  frontend: { icon: Layers, labelId: "Frontend", labelEn: "Frontend", color: "text-cyan-400" },
-  backend: { icon: Wrench, labelId: "Backend", labelEn: "Backend", color: "text-green-400" },
-  database: { icon: Database, labelId: "Database", labelEn: "Database", color: "text-orange-400" },
-  ml: { icon: BrainCircuit, labelId: "Machine Learning & AI", labelEn: "Machine Learning & AI", color: "text-purple-400" },
-  iot: { icon: Cpu, labelId: "IoT & Embedded", labelEn: "IoT & Embedded", color: "text-teal-400" },
-  devops: { icon: Layers, labelId: "DevOps & Tools", labelEn: "DevOps & Tools", color: "text-red-400" },
-  tools: { icon: Wrench, labelId: "Tools", labelEn: "Tools", color: "text-yellow-400" },
+const categoryConfig: Record<
+  TechCategory,
+  { icon: typeof Code2; labelId: string; labelEn: string; color: string }
+> = {
+  language: {
+    icon: Code2,
+    labelId: "Bahasa Pemrograman",
+    labelEn: "Languages",
+    color: "text-sky-400",
+  },
+  frontend: {
+    icon: Layers,
+    labelId: "Frontend",
+    labelEn: "Frontend",
+    color: "text-cyan-400",
+  },
+  backend: {
+    icon: Wrench,
+    labelId: "Backend",
+    labelEn: "Backend",
+    color: "text-emerald-400",
+  },
+  database: {
+    icon: Database,
+    labelId: "Database",
+    labelEn: "Database",
+    color: "text-amber-400",
+  },
+  ml: {
+    icon: BrainCircuit,
+    labelId: "Machine Learning & AI",
+    labelEn: "Machine Learning & AI",
+    color: "text-purple-400",
+  },
+  iot: {
+    icon: Cpu,
+    labelId: "IoT & Embedded",
+    labelEn: "IoT & Embedded",
+    color: "text-teal-400",
+  },
+  devops: {
+    icon: Layers,
+    labelId: "DevOps & Tools",
+    labelEn: "DevOps & Tools",
+    color: "text-rose-400",
+  },
+  tools: {
+    icon: Wrench,
+    labelId: "Tools",
+    labelEn: "Tools",
+    color: "text-yellow-400",
+  },
 };
 
 export function SkillsPageClient() {
   const locale = useLocale();
-  const [expandedCategory, setExpandedCategory] = useState<string | null>("language");
+  const isId = locale === "id";
+  const [expandedCategory, setExpandedCategory] = useState<string | null>(
+    "language"
+  );
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12">
       {/* Language Distribution */}
-      <AnimatedSection delay={0.1}>
-        <div className="glass-card rounded-2xl p-8" id="language-distribution">
-          <h2 className="text-xl font-bold text-foreground mb-6 flex items-center gap-2">
-            <Code2 className="h-5 w-5 text-primary" />
-            {locale === "id" ? "Distribusi Bahasa Pemrograman" : "Programming Language Distribution"}
+      <AnimatedSection immediate>
+        <div className="glass-card p-6 sm:p-8" id="language-distribution">
+          <h2 className="text-lg sm:text-xl font-bold text-foreground mb-5 flex items-center gap-2.5">
+            <Code2 className="h-5 w-5 text-primary" aria-hidden="true" />
+            {isId
+              ? "Distribusi Bahasa Pemrograman (GitHub)"
+              : "Programming Language Distribution (GitHub)"}
           </h2>
 
-          {/* Visual bar */}
-          <div className="flex h-3 w-full rounded-full overflow-hidden mb-6 gap-0.5">
+          <div
+            className="flex h-3 w-full rounded-full overflow-hidden mb-5 gap-0.5 bg-white/5"
+            role="img"
+            aria-label={languageStats
+              .map((l) => `${l.language} ${l.percentage}%`)
+              .join(", ")}
+          >
             {languageStats.map((lang) => (
-              <motion.div
+              <div
                 key={lang.language}
-                initial={{ width: 0 }}
-                animate={{ width: `${lang.percentage}%` }}
-                transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-                style={{ backgroundColor: lang.color }}
-                className="h-full"
-                title={`${lang.language}: ${lang.percentage}%`}
+                style={{
+                  width: `${lang.percentage}%`,
+                  backgroundColor: lang.color,
+                }}
+                className="h-full first:rounded-l-full last:rounded-r-full"
               />
             ))}
           </div>
 
-          {/* Legend */}
-          <div className="flex flex-wrap gap-4">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {languageStats.map((lang) => (
-              <div key={lang.language} className="flex items-center gap-2">
-                <div
-                  className="h-3 w-3 rounded-full"
+              <li key={lang.language} className="flex items-center gap-2 text-sm">
+                <span
+                  className="h-2.5 w-2.5 rounded-full shrink-0"
                   style={{ backgroundColor: lang.color }}
+                  aria-hidden="true"
                 />
-                <span className="text-sm text-muted-foreground">
-                  {lang.language}
-                </span>
-                <span className="text-sm font-medium text-foreground">
+                <span className="text-muted-foreground">{lang.language}</span>
+                <span className="font-mono font-semibold text-foreground tabular-nums">
                   {lang.percentage}%
                 </span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </AnimatedSection>
 
       {/* Skill Groups Accordion */}
       <div className="space-y-4">
-        {skillGroups.map((group, groupIndex) => {
+        {skillGroups.map((group) => {
           const config = categoryConfig[group.category];
           const isExpanded = expandedCategory === group.category;
+          const panelId = `skill-panel-${group.category}`;
 
           return (
-            <AnimatedSection key={group.category} delay={groupIndex * 0.05}>
-              <div
-                className={cn(
-                  "glass-card rounded-2xl overflow-hidden transition-all duration-300",
-                  isExpanded && "ring-1 ring-primary/30"
-                )}
-                id={`skill-group-${group.category}`}
-              >
-                {/* Header */}
+            <div
+              key={group.category}
+              className={cn(
+                "glass-card overflow-hidden transition-colors",
+                isExpanded && "border-primary/35"
+              )}
+              id={`skill-group-${group.category}`}
+            >
+              <h3>
                 <button
+                  type="button"
                   onClick={() =>
                     setExpandedCategory(isExpanded ? null : group.category)
                   }
-                  className="w-full flex items-center justify-between p-6 text-left hover:bg-muted/30 transition-colors"
+                  aria-expanded={isExpanded}
+                  aria-controls={panelId}
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left hover:bg-white/5 transition-colors"
                   id={`toggle-${group.category}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 border border-primary/20">
-                      <config.icon className={`h-5 w-5 ${config.color}`} />
+                  <div className="flex items-center gap-3.5">
+                    <div className="glass-subtle flex h-10 w-10 items-center justify-center rounded-xl">
+                      <config.icon
+                        className={`h-5 w-5 ${config.color}`}
+                        aria-hidden="true"
+                      />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-foreground">
-                        {locale === "id" ? config.labelId : config.labelEn}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
+                      <span className="block font-semibold text-foreground">
+                        {isId ? config.labelId : config.labelEn}
+                      </span>
+                      <span className="block text-xs text-muted-foreground">
                         {group.skills.length}{" "}
-                        {locale === "id" ? "teknologi" : "technologies"}
-                      </p>
+                        {isId ? "teknologi" : "technologies"}
+                      </span>
                     </div>
                   </div>
-                  <motion.div
-                    animate={{ rotate: isExpanded ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                  </motion.div>
+                  <ChevronDown
+                    className={cn(
+                      "h-5 w-5 text-muted-foreground transition-transform duration-200",
+                      isExpanded && "rotate-180"
+                    )}
+                    aria-hidden="true"
+                  />
                 </button>
+              </h3>
 
-                {/* Skills */}
-                <AnimatePresence>
-                  {isExpanded && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-6 space-y-4 border-t border-border/50 pt-4">
-                        {group.skills.map((skill, skillIndex) => (
-                          <motion.div
-                            key={skill.name}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: skillIndex * 0.05 }}
-                            className="space-y-2"
-                            id={`skill-${skill.name.toLowerCase().replace(/\s+/g, "-")}`}
-                          >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center gap-2">
-                                <div
-                                  className="h-2 w-2 rounded-full"
-                                  style={{ backgroundColor: skill.color }}
-                                />
-                                <span className="text-sm font-medium text-foreground">
-                                  {skill.name}
-                                </span>
-                              </div>
-                              <div className="flex items-center gap-3">
-                                <span className="text-xs text-muted-foreground">
-                                  {skill.usedIn.length}{" "}
-                                  {locale === "id" ? "proyek" : "projects"}
-                                </span>
-                                <span className="text-xs font-mono font-bold text-primary">
-                                  {skill.level}%
-                                </span>
-                              </div>
-                            </div>
-                            <div className="skill-bar-track">
-                              <motion.div
-                                className="skill-bar-fill"
-                                initial={{ width: 0 }}
-                                animate={{ width: `${skill.level}%` }}
-                                transition={{
-                                  duration: 0.8,
-                                  delay: skillIndex * 0.05,
-                                  ease: "easeOut",
-                                }}
+              <AnimatePresence initial={false}>
+                {isExpanded && (
+                  <motion.div
+                    id={panelId}
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.22, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-5 sm:px-6 pb-6 pt-4 border-t border-[var(--glass-border)] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      {group.skills.map((skill) => (
+                        <div
+                          key={skill.name}
+                          className="glass-subtle rounded-xl p-4 space-y-2"
+                          id={`skill-${skill.name.toLowerCase().replace(/\s+/g, "-")}`}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span
+                                className="h-2.5 w-2.5 rounded-full shrink-0"
+                                style={{ backgroundColor: skill.color }}
+                                aria-hidden="true"
                               />
+                              <span className="text-sm font-semibold text-foreground truncate">
+                                {skill.name}
+                              </span>
                             </div>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </AnimatedSection>
+                            <span className="text-xs font-mono text-primary shrink-0">
+                              {skill.usedIn.length}{" "}
+                              {isId ? "proyek" : "projects"}
+                            </span>
+                          </div>
+                          <p className="text-xs text-muted-foreground line-clamp-2">
+                            {skill.usedIn.join(" · ")}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           );
         })}
       </div>
 
-      {/* Key Achievements */}
-      <AnimatedSection delay={0.3}>
-        <div className="glass-card rounded-2xl p-8" id="key-achievements">
-          <h2 className="text-xl font-bold text-foreground mb-6">
-            {locale === "id" ? "Pencapaian Kunci" : "Key Achievements"}
+      {/* Key Highlights */}
+      <AnimatedSection>
+        <section className="glass-card p-6 sm:p-8" id="key-achievements">
+          <h2 className="text-xl font-bold text-foreground mb-5">
+            {isId ? "Ringkasan Kapabilitas" : "Core Capabilities"}
           </h2>
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
               {
-                id: "Model Accuracy 89.2%",
-                en: "Model Accuracy 89.2%",
-                desc_id: "TruthGuard AI fraud detection model dengan akurasi tinggi menggunakan Azure AI Language",
-                desc_en: "TruthGuard AI fraud detection model with high accuracy using Azure AI Language",
+                id: "Model Deteksi Penipuan (Akurasi 89.2%)",
+                en: "Fraud Detection Model (89.2% Accuracy)",
+                desc_id:
+                  "TruthGuard AI menggunakan Azure AI Language dan FastAPI dengan explainability scoring.",
+                desc_en:
+                  "TruthGuard AI built with Azure AI Language and FastAPI with risk explainability.",
               },
               {
-                id: "5 Kategori Teknologi",
-                en: "5 Technology Categories",
-                desc_id: "Menguasai Frontend, Backend, IoT, ML/AI, dan DevOps dalam proyek nyata",
-                desc_en: "Mastering Frontend, Backend, IoT, ML/AI, and DevOps in real projects",
+                id: "Layanan Publik Skala Produksi",
+                en: "Production Public-Service Platforms",
+                desc_id:
+                  "Pengembangan SIMPONI, DPMPTSP, dan MPP Digital untuk layanan masyarakat kota.",
+                desc_en:
+                  "Built and operated SIMPONI, DPMPTSP, and MPP Digital for municipal government services.",
               },
               {
-                id: "Docker Production Ready",
-                en: "Docker Production Ready",
-                desc_id: "TruthGuard AI dapat di-deploy dengan Docker Compose dalam hitungan menit",
-                desc_en: "TruthGuard AI deployable with Docker Compose in minutes",
+                id: "Containerized & Observable ML",
+                en: "Containerized & Observable ML",
+                desc_id:
+                  "Deployment Docker Compose serta pemantauan performa model dengan Prometheus dan Grafana.",
+                desc_en:
+                  "Docker Compose deployments and ML telemetry monitoring via Prometheus and Grafana.",
               },
               {
-                id: "Hardware + Software",
-                en: "Hardware + Software",
-                desc_id: "Integrasi unik antara hardware IoT (Arduino) dengan software web modern",
-                desc_en: "Unique integration between IoT hardware (Arduino) and modern web software",
+                id: "Integrasi Hardware IoT + Web",
+                en: "IoT Hardware + Web Integration",
+                desc_id:
+                  "Koneksi sensor Arduino MQ-135 dan fingerprint biometrik ke antarmuka web real-time.",
+                desc_en:
+                  "Connecting Arduino MQ-135 sensors and biometric hardware to real-time web backends.",
               },
-            ].map((achievement) => (
-              <StaggerItem key={achievement.en}>
-                <div className="flex items-start gap-3 rounded-xl bg-primary/5 border border-primary/20 p-4">
-                  <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                  <div>
-                    <p className="font-semibold text-foreground text-sm">
-                      {locale === "id" ? achievement.id : achievement.en}
-                    </p>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {locale === "id" ? achievement.desc_id : achievement.desc_en}
-                    </p>
-                  </div>
+            ].map((item) => (
+              <div
+                key={item.en}
+                className="glass-subtle flex items-start gap-3 rounded-xl p-4"
+              >
+                <CheckCircle2
+                  className="h-5 w-5 text-primary shrink-0 mt-0.5"
+                  aria-hidden="true"
+                />
+                <div>
+                  <p className="font-semibold text-foreground text-sm">
+                    {isId ? item.id : item.en}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                    {isId ? item.desc_id : item.desc_en}
+                  </p>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </StaggerContainer>
-        </div>
+          </div>
+        </section>
       </AnimatedSection>
     </div>
   );

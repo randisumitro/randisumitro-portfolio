@@ -14,11 +14,9 @@
     "roles": [
       "Full Stack Developer",
       "IoT Engineer",
-      "Machine Learning Researcher",
-      "System Analyst",
-      "Web Developer"
+      "Machine Learning Researcher"
     ],
-    "description": "Full Stack Engineer specializing in building production-grade digital public services, intelligent systems (AI/ML), and high-performance modern enterprise architectures.",
+    "description": "Full Stack Engineer building production public-service platforms, applied machine learning systems, and connected IoT hardware.",
     "cta_projects": "View Projects",
     "cta_contact": "Contact Me",
     "cta_resume": "Download CV",
@@ -26,7 +24,7 @@
     "available": "Available for collaboration"
   },
   "stats": {
-    "title": "GitHub Analytics",
+    "title": "GitHub Overview",
     "repos": "Repositories",
     "stars": "Stars",
     "followers": "Followers",
@@ -35,29 +33,29 @@
   },
   "about": {
     "title": "About Me",
-    "subtitle": "Engineering + Scale + Impact",
-    "intro": "I am a Senior Full Stack Engineer with a proven track record of designing, developing, and maintaining large-scale digital systems for public services and enterprises.",
+    "subtitle": "Software Engineering, IoT & Applied ML",
+    "intro": "I am a Full Stack Engineer focused on designing, building, and operating digital platforms for public services, applied machine learning, and hardware-integrated IoT systems.",
     "journey_title": "Professional Experience",
     "journey": [
       {
         "year": "2023",
         "title": "Regional Procurement Digitalization",
-        "description": "Led the development of SIMPONI, a digital procurement management system for bureaucratic transparency"
+        "description": "Led the development of SIMPONI, a digital procurement management system for transparent local administration."
       },
       {
         "year": "2024",
         "title": "Integrated Licensing Portal",
-        "description": "Built licensing tracking system and real-time notifications for DPMPTSP"
+        "description": "Built licensing tracking and real-time notification workflows for DPMPTSP."
       },
       {
         "year": "2025",
         "title": "Public Service Super App",
-        "description": "Designed microservices architecture for MPP Digital, centralizing 100+ services"
+        "description": "Designed the architecture for MPP Digital, unifying municipal services under a single SSO portal."
       },
       {
         "year": "2026",
-        "title": "Enterprise AI & Full Stack",
-        "description": "Built TruthGuard AI with Azure AI Language and FastAPI"
+        "title": "Applied AI & Full Stack",
+        "description": "Built TruthGuard AI with Azure AI Language and FastAPI alongside ML time-estimation microservices."
       }
     ],
     "focus_title": "Focus Areas",
@@ -78,7 +76,7 @@
   },
   "skills": {
     "title": "Technical Skills",
-    "subtitle": "Technologies used in real projects",
+    "subtitle": "Technologies applied across production and engineering projects",
     "categories": {
       "language": "Programming Languages",
       "frontend": "Frontend",
@@ -93,7 +91,7 @@
   },
   "projects": {
     "title": "Projects",
-    "subtitle": "Real work from GitHub repositories",
+    "subtitle": "Selected production platforms, AI applications, and IoT engineering work",
     "filter_all": "All",
     "filter_ai": "AI/ML",
     "filter_fullstack": "Full Stack",
@@ -113,7 +111,7 @@
   },
   "research": {
     "title": "Research",
-    "subtitle": "Scientific exploration and technical experiments",
+    "subtitle": "Technical experiments and applied machine learning work",
     "methodology": "Methodology",
     "results": "Results",
     "dataset": "Dataset",
@@ -121,7 +119,7 @@
   },
   "experience": {
     "title": "Experience",
-    "subtitle": "Professional career and projects",
+    "subtitle": "Engineering projects and applied systems work",
     "personal": "Personal Project",
     "academic": "Research & Academic",
     "organization": "Open Source Project",
@@ -130,7 +128,7 @@
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's collaborate and build something amazing",
+    "subtitle": "Open to software engineering projects, technical consulting, and collaboration",
     "email_label": "Email",
     "github_label": "GitHub",
     "linkedin_label": "LinkedIn",
@@ -140,7 +138,7 @@
     "form_message": "Message",
     "form_submit": "Send Message",
     "form_sending": "Sending...",
-    "form_success": "Message sent successfully! I'll reply as soon as possible.",
+    "form_success": "Message sent successfully. I'll reply as soon as possible.",
     "form_error": "Failed to send message. Please try again.",
     "availability": "Available for",
     "availability_items": [
@@ -151,7 +149,7 @@
     ]
   },
   "footer": {
-    "built_with": "Built with",
+    "built_with": "Designed and engineered by",
     "by": "by",
     "rights": "All rights reserved"
   },
